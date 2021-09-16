@@ -1,5 +1,5 @@
-Nombre: John Edisson Merchán López
-Rol: Developer
-Profesión: Ingeniero Sanitario con Especialización en Estadística
-Descripción: Bogotano, 29 años.
-Expectativas: Aprende lo mejor posible sobre desarrollo web y lenguaje de programación para complementarlo con mi profesión.
+Nombre: John Edisson Merchan Lopez
+-Rol: Developer
+-Profesión: Ingeniero Sanitario con Especialización en Estadística
+-Descripción: Bogotano, 29 años.
+-Expectativas: Aprende lo mejor posible sobre desarrollo web y lenguaje de programación para complementarlo con mi profesión.
