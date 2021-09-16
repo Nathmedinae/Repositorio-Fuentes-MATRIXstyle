@@ -1,0 +1,5 @@
+Nombre: Alveiro Javier Bueno Aguirre
+Rol: Administrador de BD
+Profesión: Ingeniero de Producción
+Descripción: Bogotano, viviendo en Tunja, Boyacá; trabajo en Editorial Santillana como Coordinador de Ensamble Digital.
+Expectativas: Aprender programación con énfasis en Backend, Bases de datos y dispositivos móviles.
