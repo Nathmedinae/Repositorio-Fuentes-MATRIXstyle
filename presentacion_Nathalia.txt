@@ -1,0 +1,5 @@
+Nombre: Nathalia Medina
+Rol: Analista
+Profesion: Animador Digital
+Descripcion: Estudio un programa para animacion 3D y trabajo como Freelance en publicidad
+Expectativas: Lograr aprender todo lo necesario en programacion para el Desarrollo de apps web
