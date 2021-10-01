@@ -6,7 +6,7 @@
     <meta name="robots" content="index,follow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo de gestión de usuarios</title>
+    <title>Módulo de usuarios</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
         <figure>
             <img src="../resources/matrixLogistics_icon2.png" alt="icon">
         </figure>
-        <h1>Módulo de gestión de usuarios</h1>
+        <h1>Módulo de usuarios</h1>
     </header>
 
     <main>
@@ -25,17 +25,22 @@
             <nav>
                 <ul>
                     <li><a class="active" href="homeUsersModule.html">Inicio</a></li>
-                    <li><a href="oldUsers.html">Usuarios registrados</a></li>
-                    <li><a href="roleUsers.html">Definición de roles</a></li>
+                    <li><a href="#createUsers">Creación de usuarios</a></li>
+                    <li><a href="./oldUsers.html">Usuarios registrados</a></li>
+                    <li><a id="exit" class="active" href="inputUsersModule.html">Salida segura</a></li>
                 </ul>
             </nav>
         </section>
 
         <section>
-            <h2 class="subtitle_page">Creación de nuevos usuarios</h2>
+            <h2 class="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
             <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
             
             <form action="./sucess.html">
+                <label for="dni">
+                    <span>Número de documento de identidad:</span>
+                    <input type="number" id ="dni" min="7" placeholder="Escribe el número de documento" autocomplete="off" required>
+                </label>
                 <label for="nombre">
                     <span>Nombres:</span>
                     <input type="text" id ="nombre" placeholder="Escribe los nombres" autocomplete="off" required>
@@ -44,10 +49,7 @@
                     <span>Apellidos:</span>
                     <input type="text" id ="apellido" placeholder="Escribe los apellidos" autocomplete="off" required>
                 </label>
-                <label for="dni">
-                    <span>Número de documento de identidad:</span>
-                    <input type="number" id ="dni" min="7" placeholder="Escribe el número de documento" autocomplete="off" required>
-                </label>
+
                 <label for="email">
                     <span>Correo:</span>
                     <input type="email" id ="email" placeholder="Escribe el correo" autocomplete="off" required>
@@ -81,7 +83,6 @@
                 <input class="submitButton" type="submit" value="Agregar usuario">
             </form>
         </section>
-
     </main>
 
     <footer>

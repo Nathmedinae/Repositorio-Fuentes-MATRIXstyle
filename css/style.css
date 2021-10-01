@@ -29,6 +29,7 @@ header{
 }
 
 main{
+    position: relative;
     width: 70%;
     padding: 0%;
     margin: 0 auto;
@@ -41,6 +42,7 @@ main{
 }
 
 section {
+    position: relative;
     background-color: white;
     padding: 1rem;
     margin-top: 1rem;
@@ -82,15 +84,37 @@ span{
 }
 
 form{
+    position: relative;
     font-weight: bold;
     color: #444444;
-    margin-left: 20px;
-    margin-bottom: 10px;
-    padding-bottom: 20px;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 
 }
 
+.form2 {
+    background-color: #F9F9FA;
+}
+
+option {
+    width: fit-content;
+}
+
+label{
+    display: inline-block;
+    margin: 1rem;
+}
+
+.labelCheck{
+    font-size: 1.3rem;
+    display: flex;
+    padding: 0px;
+    margin: opx;
+}
+
 select {
+    width: fit-content;
     color: #444444;
     font-weight:bolder;
     font-size: 1.2rem;
@@ -99,6 +123,7 @@ select {
 
 
 .submitButton {
+    display: inline-block;
     margin: 10px;
     width: 150px;
     border-radius: 5px; 
@@ -108,7 +133,6 @@ select {
     background-color:#d7d5d8;
 
 }
-
 
 section nav {
     margin-top: 1rem;
@@ -121,6 +145,26 @@ ul{
     padding: 0;
     overflow: hidden;
     background-color: #011627;
+}
+
+.ulSearch{
+    margin-left: 4rem;
+    background-color: #F9F9FA;
+}
+
+.ulHome {
+    display: flex;
+    justify-content:space-evenly;
+
+}
+
+.ulMain{
+    float: left;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 
@@ -150,6 +194,12 @@ width: 300px;
 border-radius: 5px;
 display: block;
 margin-bottom: 20px;
+}
+
+.inputCheck {
+    width: 3rem;
+    padding: 0px;
+    margin: 0px;
 }
 
 select {

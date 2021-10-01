@@ -25,15 +25,46 @@
         <section>
             <nav>
                 <ul>
-                    <li><a href="newUsers.html">Crear nuevos usuarios</a></li>
-                    <li><a href="roleUsers.html">Definición de roles</a></li>
+                    <li><a class="active" href="homeUsersModule.html">Inicio</a></li>
+                    <li><a href="./newUsers.html">Creación de usuarios</a></li>
+                    <li><a href="#regUsers">Usuarios registrados</a></li>
                     <li><a id="exit" class="active" href="inputUsersModule.html">Salida segura</a></li>
                 </ul>
             </nav>
         </section>
 
         <section>
-            <h2 class="subtitle_page">Usuarios registrados</h2>
+            <h2 id="regUsers"class="subtitle_page">Usuarios registrados</h2>
+            <form action="" class="form2">
+                <span>Búsqueda por palabra clave:</span>
+                <label for="">
+                    <input type="search" id ="searchUsers" placeholder="Escribe una palabra clave" autocomplete="off">
+                </label>
+                <input class="submitButton" type="submit" value="Buscar">
+            </form>
+
+            <form action="" class="form2">
+                <span>Búsqueda por filtros:</span>
+                <label for="">
+                    <span>Rol:</span>
+                    <select name="rol" id="rol" autocomplete="off" required>
+                        <option value="Coordinador de ventas">Operario</option>
+                        <option value="Administrador">Vendedor</option>
+                        <option value="Ejecutivo de ventas">Ejecutivo</option>
+                        <option value="Coordinador de ventas">Gerente comercial</option>
+                        <option value="Coordinador de ventas">Director</option>
+                        <option value="Analista de ventas">Administrador</option>
+                    </select>
+                </label>
+                <label for="">
+                    <span>Estado:</span>
+                    <select name="perfil" id="perfil" autocomplete="off" required>
+                        <option value="activo">Activo</option>
+                        <option value="inactivo">Inactivo</option>
+                    </select>
+                </label>
+                <input class="submitButton" type="submit" value="Buscar">
+            </form>
             <h3>Lista de usuarios registrados</h3>
             <table>
                 <tr>

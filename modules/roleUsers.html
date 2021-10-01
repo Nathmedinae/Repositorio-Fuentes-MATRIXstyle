@@ -25,15 +25,16 @@
         <section>
             <nav>
                 <ul>
-                    <li><a href="newUsers.html">Crear nuevos usuarios</a></li>
-                    <li><a href="oldUsers.html">Usuarios registrados</a></li>
+                    <li><a class="active" href="homeUsersModule.html">Inicio</a></li>
+                    <li><a href="#createRoles">Creación de nuevos roles</a></li>
+                    <li><a href="./roleUsersRegister.html">Roles registrados</a></li>
                     <li><a id="exit" class="active" href="inputUsersModule.html">Salida segura</a></li>
                 </ul>
             </nav>
         </section>
 
         <section>
-            <h2 class="subtitle_page">Creación de nuevos roles</h2>
+            <h2 class="subtitle_page" id="createRoles">Creación de nuevos roles</h2>
             <p>Para crear un nuevo rol diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
             
             <form action="./sucess.html">
@@ -42,22 +43,6 @@
                     <input type="text" id ="nombreRol" placeholder="Escribe el nuevo tipo de rol" autocomplete="off" required>
                 </label>
 
-                <label for="perfil">
-                    <span>Permisos:</span>
-                    <!-- <input list="perfil" placeholder="Selecciona el perfil de usuario" required> -->
-                    <!-- <datalist id="perfil">
-                        <option value="Administrador"></option>
-                        <option value="Ejecutivo de ventas"></option>
-                        <option value="Coordinador de ventas"></option>
-                        <option value="Analista de ventas"></option>
-                    </datalist> -->
-                    <select name="permisos" id="permisos" autocomplete="off" required>
-                        <option value="Módulo de entregas">Módulo de entregas</option>
-                        <option value="Módulo de ventas">Módulo de ventas</option>
-                        <option value="Módulo maestro de ventas">Módulo maestro de ventas</option>
-                        <option value="Acceso total">Acceso total</option>
-                    </select>
-                </label>
                 <label for="estado">
                     <span>Estado:</span>
                     <select name="estado" id="estado" autocomplete="off" required>
@@ -65,59 +50,25 @@
                         <option value="Inactivo">Inactivo</option>
                     </select>
                 </label>
+                <label for="checkVentas" class="labelCheck">
+                    <input class="inputCheck" type="checkbox" name="checkVentas" id="checkVentas" autocomplete="off">
+                    Módulo de ventas
+                </label>
+                <label for="checkProductos" class="labelCheck">
+                    <input class="inputCheck" type="checkbox" name="checkProductos" id="checkProductos">
+                    Módulo de productos
+                </label>
+                </label>
+                <label for="checkUsers" class="labelCheck">
+                    <input class="inputCheck" type="checkbox" name="checkUsers" id="checkUsers">
+                    Módulo de usuarios
+                </label>
+
                 <input class="submitButton" type="submit" value="Agregar rol">
             </form>
-            <hr>
         </section>
 
-        <section>
-            <h2 class="subtitle_page">Roles registrados</h2>
-            <table>
-                <tr>
-                    <th>Tipo de rol</th>
-                    <th>Permisos del usuario</th>
-                    <th>Estado</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-                <tr>
-                    <td>Director</th>
-                    <td>Acceso total</th>
-                    <td>Activo</th>
-                    <td class="table_td_img"><img src="../resources/edit_icon.png" alt="Editar"></td>
-                    <td class="table_td_img"><img src="../resources/trash_icon50px.png" alt="Eliminar"></td>
-                </tr>
-                <tr>
-                    <td>Gerente comercial</th>
-                    <td>Acceso total</th>
-                    <td>Activo</th>
-                    <td class="table_td_img"><img src="../resources/edit_icon.png" alt="Editar"></td>
-                    <td class="table_td_img"><img src="../resources/trash_icon50px.png" alt="Eliminar"></td>
-                </tr>
-                <tr>
-                    <td>Ejecutivo</th>
-                    <td>Módulo maestro de ventas</th>
-                    <td>Activo</th>
-                    <td class="table_td_img"><img src="../resources/edit_icon.png" alt="Editar"></td>
-                    <td class="table_td_img"><img src="../resources/trash_icon50px.png" alt="Eliminar"></td>
-                </tr>
-                <tr>
-                    <td>Vendedor</th>
-                    <td>Módulo de ventas</th>
-                    <td>Activo</th>
-                    <td class="table_td_img"><img src="../resources/edit_icon.png" alt="Editar"></td>
-                    <td class="table_td_img"><img src="../resources/trash_icon50px.png" alt="Eliminar"></td>
-                </tr>
-                <tr>
-                    <td>Operario</th>
-                    <td>Módulo de entregas</th>
-                    <td>Activo</th>
-                    <td class="table_td_img"><img src="../resources/edit_icon.png" alt="Editar"></td>
-                    <td class="table_td_img"><img src="../resources/trash_icon50px.png" alt="Eliminar"></td>
-                </tr>
-            </table>
-        </section>
-
+        
     </main>
 
     <footer>
