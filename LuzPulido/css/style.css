@@ -14,7 +14,7 @@ html {
 body{
     width: 100vw;
     margin: 0 auto;
-    background-color:#FFF8E5;
+    background-color:#2EC4B6;
 }
 
 header{
@@ -135,7 +135,7 @@ li a:hover:not(.active) {
 }
 
 .active {
-    background-color: #2EC4B6;
+    background-color: #E71D36;
 }
 
 #exit {
