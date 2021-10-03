@@ -211,20 +211,20 @@ td {
     background-image: linear-gradient (to left white gray)
   }
 
-  .table_td_img {
+.table_td_img {
       width: 50px;
       height: 50px;
   }
-  .contenedorImagen{
+.contenedorImagen{
     display: flex;
     margin: 5px;
     justify-content: center;
    }
 
-  .imagenPequeña{
+.imagenPequeña{
     height: 60px;
   }
-  .contenedorSeccion{
+.contenedorSeccion{
     display: grid;
     margin: 5px;
     border-color: #444444;
@@ -238,5 +238,26 @@ td {
 .grid{
     display: grid;
     grid-template-columns: 50% 50%;
+    
 } 
+aside{
+    gap: 10px;
+    float: left;
+    width: 20%;
+    background-color: floralwhite;
+    min-height: 500px;
+}
+.input {
+    width: 80%;  
+}
+.listAside{
+    li a{
+        float: left;
+        font-size: 1.3rem;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+}
 

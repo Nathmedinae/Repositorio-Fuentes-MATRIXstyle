@@ -6,7 +6,7 @@
     <meta name="robots" content="index,follow">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo de gestión de usuarios</title>
+    <title>Modulo de Gestión de Productos</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,30 +17,39 @@
         <figure>
             <img src="../resources/matrixLogistics_icon2.png" alt="icon">
         </figure>
-        <h1>Módulo de gestión de productos</h1>
+        <h1>Modulo de Gestión de Producto / Actualizar Producto</h1>
     </header>
     <main>
         <section>
             <nav>
                 <ul>
-                   <li><a id="exit" class="active" href="homeProductModule.html">Salida segura</a></li>
+                    <li><a id="exit" class="active" href="homeProductModule.html">Salida segura</a></li>
                 </ul>
             </nav>
         </section>
-        <aside>
+
+       
             
-                <ul>
-                    <li class="input"><a href="newProduct.html">Crear Productos</a></li>
-                    <li class="input"><a href="modifyProduct.html">Actualizar Productos</a></li>  
-                </ul>
-        
-        </aside>
+        <div class=grid>
 
-        
+                <section  class="contenedorSeccion">
+                    <label for="codigo">
+                    <span>Búsqueda</span>
+                        <span>Código de Producto:</span>
+                        <input type="number" id ="codigo" placeholder="Escribe el Código" autocomplete="off" required>
+                    </label>
+                    <label for="nombre">
+                        <span>Nombre de Producto:</span>
+                        <input type="text" id ="nombre" placeholder="Escribe el Nombre del Producto" autocomplete="off" required>
+                    </label>
+                </section>  
+
+              
+                
+        </div>
+        <div><input class="submitButton" type="submit" value="Buscar Producto"></div>
+            
     </main>
-
-    
-
     <footer>
         <figure >
             <img src="../resources/matrixLogistics_icon50px.png" alt="icon" >
