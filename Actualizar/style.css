@@ -208,11 +208,11 @@ td {
 
 .editar {
     background-color: #FDFFFC;
-    float:left;
+    float:none;
 }
 
 .eliminar {
     background-color: #FDFFFC;
-    float:right;
+    float:none;
 }
 
