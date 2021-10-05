@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Esta es una breve descripción de la página, es importante para que e los buscadores aparezca esta descripción.">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de gestión de usuarios</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="../js/input.js"></script>
+</head>
+<body>
+    <header>
+        <figure>
+            <img src="../resources/matrixLogistics_icon2.png" alt="icon">
+        </figure>
+        <h1>Plataforma de gestión corporativa</h1>
+    </header>
+
+    <main>
+        <section>
+            <nav>
+                <ul>
+                    <li><a class="active" href="../../index.html">Página principal</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section>
+            <h2 class="subtitle_page">Inicio de sesión</h2>
+            <p>Ingrese sus datos para iniciar sesión en el módulo de gestión de usuarios:</p>
+
+            <form action="homeUsersModule.html" onsubmit="return()">
+                <label for="usuarioLabel">
+                    <span>Usuario:</span>
+                    <input type="text" id ="usuario" placeholder="Escribe tu nombre de usuario" autocomplete="username" required>
+                </label>
+                <label for="passwordLabel">
+                    <span>Contraseña:</span>
+                    <input type="password" id ="password" placeholder="Escribe tu password" autocomplete="current-password" required>
+                </label>
+                <input class="submitButton" type="submit" value="Ingresar">
+            </form>
+            
+        </section>
+
+    </main>
+
+    <footer>
+        <figure>
+            <img src="../resources/matrixLogistics_icon50px.png" alt="icon">
+            <span>Copyrigh MatrixStyle - Ministerio de las TIC - 2021</span>
+        </figure>
+    </footer>
+    
+</body>
+</html>

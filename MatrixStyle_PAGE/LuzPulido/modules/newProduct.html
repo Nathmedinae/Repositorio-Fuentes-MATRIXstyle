@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Esta es una breve descripción de la página, es importante para que e los buscadores aparezca esta descripción.">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modulo de Gestión de Productos</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <figure>
+            <img src="../resources/matrixLogistics_icon2.png" alt="icon">
+        </figure>
+        <h1>Modulo de Gestión de Producto / Creación de Producto</h1>
+    </header>
+    <main>
+        <section>
+            <nav>
+                <ul>
+                    <li><a class="active" href="../modules/homeProductModule.html">Inicio</a></li>
+                    <li><a id="exit" class="active" href="../inputUsersModule.html">Salida segura</a></li>
+                </ul>
+            </nav>
+        </section>
+            
+            <div class=grid>
+                <section class="contenedorSeccion">
+                    <span>Información Básica</span>
+                    <form action="">
+                        
+                        <label for="codigo">
+                            <span>Código de Producto:</span>
+                            <input type="number" id ="codigo" placeholder="Escribe el Código" autocomplete="off" required>
+                        </label>
+                        <label for="nombre">
+                            <span>Nombre de Producto:</span>
+                            <input type="text" id ="nombre" placeholder="Escribe el Nombre del Producto" autocomplete="off" required>
+                        </label>
+                        <label for="Resumen">
+                            <span>Resumen:</span>
+                            <input type="text" id ="resumen" placeholder="Escribe Resumen breve" autocomplete="off" required>
+                        </label>
+                        <label for="nombre">
+                            <span>Descripción:</span>
+                            <input type="text" id ="descripción" placeholder="Descripciòn de Producto" autocomplete="off" required>
+                        </label>
+                        <label for="Color">
+                            <span>Color:</span>
+                            <select name="Color">
+                                <option value="Blanco">Blanco</option> 
+                                <option value="Negro">Negro</option> 
+                                <option value="Gris">Gris</option>
+                           </select>
+                           
+                        </label>
+                        <label for="Talla">
+                            <span>Talla:</span>
+                            <select name="Talla">
+                               <option value="S">S</option> 
+                               <option value="M">M</option> 
+                               <option value="L">L</option>
+                               <option value="X">X</option> 
+                            </select>
+                        </label>
+          
+                    </form>
+                </section>
+        
+                <section class="contenedorSeccion">
+                    <span class=titulosSecciones>Clasificación / Características</span>
+                    <form action="">
+                        
+                        <label for="categoria">
+                            <span>Categoria:</span>
+                            <input type="text" id ="categoria" placeholder="Escribe la categoria" autocomplete="off" required>
+                        </label>
+        
+                        <label for="IVA">
+                            <span>%IVA:</span>
+                            <input type="number" id ="IVA" placeholder="%IVA" autocomplete="off" required>
+                        </label>
+
+                        <label for="Peso">
+                            <span>Peso kg:</span>
+                            <input type="number" id ="Peso" placeholder="Escribe el Peso" autocomplete="off" required>
+                        </label>
+        
+                        <label for="Largo">
+                            <span>Largo cm:</span>
+                            <input type="largo" id ="largo" placeholder="%IVA" autocomplete="off" required>
+                        </label>
+                        
+                    </form>
+        
+                </section>    
+        
+                  
+                <section class="contenedorSeccion">
+                    <span>Lista de Precios</span>
+                    <form action="">
+                        <label for="Precio">
+                            <span>Precio COP:</span>
+                            <input type="number" id ="precio" placeholder="precio" autocomplete="off" required>
+                        </label> 
+                    </form>
+        
+                </section>    
+        
+                <section class="contenedorSeccion">
+                    <span>Inventario</span>
+                    <form action="">
+                        
+                      <label for="Unidades">
+                            <span>Adicionar al Inventario</span>
+                            <input type="Inventario" id ="Inventario" placeholder="Inventario" autocomplete="off" required>
+                        </label>
+                        
+                        
+                    </form>
+        
+                </section>    
+             
+               
+            </div>
+
+            <div><input class="submitButton" type="submit" value="Agregar Producto">  </div>
+            
+    </main>
+    <footer>
+        <figure >
+            <img src="../resources/matrixLogistics_icon50px.png" alt="icon" >
+            <span>Copyrigh MatrixStyle - Ministerio de las TIC - 2021</span>
+        </figure>
+    </footer>
+    
+</body>
+</html>

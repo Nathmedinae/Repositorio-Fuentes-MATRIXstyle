@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Esta es una breve descripción de la página, es importante para que e los buscadores aparezca esta descripción.">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ventas</title>
+    <link rel="stylesheet" href="../JUAN/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <figure>
+            <img src="../Alveiro/resources/matrixLogistics_icon2.png" alt="icon">
+        </figure>
+        <h1>Registro de Ventas</h1>
+    </header>
+    <main>
+        <section>
+            <nav>
+                <ul class = "ulHome">
+                    <li><a class="ulMain" href="../John/Principal/maestro_ventas.html">Maestro de Ventas</a></li>
+                    <!-- <li><a class="ulMain" href="./modules/inputUsersModule.html">Productos</a></li>
+                    <li><a class="ulMain" href="./modules/inputUsersModule.html">Usuarios</a></li> -->
+                    <li><a id="exit" class="active" href="inputUsersModule.html">Salida segura</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="contenedorSeccion">
+            <p><span>Productos:</span></p>
+            <form action="">
+                
+                <label for="codigo">
+                    <span>Seleccione un producto:</span>
+                    <label for="Selección">
+                        <select name="Selección">
+                            <option value="Buso">Buso</option> 
+                            <option value="Camiseta">Camiseta</option> 
+                            <option value="Pantalón">Pantalón</option>
+                       </select>
+                </label>
+
+                <label for="codigo">
+                    <span>Seleccione el color:</span>
+                    <label for="SelecciónColor">
+                        <select name="SelecciónColor">
+                            <option value="Blanco">Blanco</option> 
+                            <option value="Negro">Negro</option> 
+                            <option value="Gris">Gris</option>
+                       </select>
+                </label>
+
+                <label for="codigo">
+                    <span>Seleccione una talla:</span>
+                    <label for="SelecciónTalla">
+                        <select name="SelecciónTalla">
+                            <option value="S">S</option> 
+                            <option value="M">M</option> 
+                            <option value="L">L</option>
+                            <option value="X">X</option>
+                       </select>
+                </label>
+
+                <input class="submitButton" type="submit" value="Seleccionar">    
+
+            </form>
+
+        </section>
+
+        <section class="contenedorSeccion">
+            <p><span>Información de selección:</span></p>
+            <form action="">
+
+                <p><label for="ProductoS">
+                    <span>Producto seleccionado:</span>
+                    <label for ="Traer información de registro">
+                </label></p>
+ 
+                <p><label for="ColorS">
+                    <span>Color seleccionado:</span>
+                    <label for ="Traer información de registro">
+                </label></p>
+
+                <p><label for="TallaS">
+                    <span>Talla seleccionada:</span>
+                    <label for ="Traer información de registro">
+                </label></p>
+
+                <p><label for="Código">
+                    <span>Código:</span>
+                    <label for ="Traer información de BD">
+                </label></p>
+
+                <p><label for="Resumen">
+                    <span>Resumen:</span>
+                    <label for ="Traer información de BD">
+                </label></p>
+
+                <p><label for="Descripción">
+                    <span>Descripción:</span>
+                    <label for ="Traer información de BD"></label>
+                </label></p>
+
+                <p><label for="Peso">
+                    <span>Peso:</span>
+                    <label for ="Traer información de BD">
+                </label></p>
+
+                <p><label for="Largo">
+                    <span>Largo:</span>
+                    <label for ="Traer información de BD">
+                </label></p>
+                
+                <p><label for="Cantidad">
+                    <span>Cantidad disponible:</span>
+                    <label for ="Traer información de BD">
+                </label></p>
+
+                <p><label for="Precio">
+                    <span>Precio unitario:</span>
+                    <label for ="Traer información de BD">
+                </label></p>
+
+            </form>
+
+        </section>
+
+        <section class="contenedorSeccion">
+            <p><span>Registro de Venta:</span></p>
+            <form action="">
+
+                <label for="Nombre del Cliente">
+                    <span>Indique el nombre del cliente:</span>
+                    <input type="Nombre" id="Nombre" placeholder="Nombre" autocomplete="off" required="">
+                </label>
+
+                <label for="Documento del Cliente">
+                    <span>Indique el número de documento del cliente:</span>
+                    <input type="Documento" id="Documento" placeholder="Documento" autocomplete="off" required="">
+                </label>
+               
+                <label for="Cantidad">
+                    <span>Indique la cantidad a vender:</span>
+                    <input type="Cantidad" id="Cantidad" placeholder="Cantidad" autocomplete="off" required="">
+                </label>
+
+                <label for="Fecha">
+                    <span>Fecha de la venta:</span>
+                    <input type="DD/MM/AAAA" id="DD/MM/AAAA" placeholder="DD/MM/AAAA" autocomplete="off" required="">
+                </label>
+
+                <label for="Descuento de Producto">
+                    <span>Seleccione el valor de descuento:</span>
+                    <label for="SelecciónColor">
+                        <select name="Seleccione el valor de descuento">
+                            <option value="0%">0%</option> 
+                            <option value="5%">5%</option> 
+                            <option value="10%">10%</option> 
+                            <option value="15%">15%</option>
+                        </select>
+                    </label>
+
+                <label for="codigo">
+                    <span>Asigne un vendedor:</span>
+                    <label for="Selección de Vendedor">
+                        <select name="SelecciónTalla">
+                            <option value="Luz">Luz</option> 
+                            <option value="Alveiro">Alveiro</option> 
+                            <option value="Jhon">Jhon</option>
+                            <option value="Nathalia">Nathalia</option>
+                       </select>
+                </label>
+             
+                <input class="submitButton" type="submit" value="Agregar Producto">    
+                    <div class="window-notice" id="window-notice">
+                </div>
+
+            </form>
+
+        </section>
+
+        <section class="contenedorSeccion">
+            <p><span class="titulosSecciones">Cuenta</span></p>
+            <form action="">
+                
+                <p><label for="Indicador de Venta">
+                    <span>Venta N°:</span>
+                    <label for ="Traer consecutivo">
+                </label></p>
+
+                <p><label for="Fecha">
+                    <span>Fecha registrada:</span>
+                    <label for ="Traer de Registro">
+                </label></p>
+                
+                <label for="Productos en la Cuenta">
+                <table class="default">
+
+                    <tr>
+                      <td>CÓDIGO</td>
+                      <td>NOMBRE</td>
+                      <td>VALOR UNITARIO</td>
+                      <td>CANTIDAD</td>
+                      <td>SUBTOTAL PRODUCTO</td>
+                    </tr>
+                    <tr>
+                      <td>Traer de BD</td>
+                      <td>Traer de BD</td>
+                      <td>Traer de BD</td>
+                      <td>Traer de registro</td>
+                      <td>Sumar</td>
+                    </tr>
+                  
+                  </table>
+                </label>          
+                  
+                <p><label for="Total de la Venta">
+                    <span>Valor total de la venta:</span>
+                    <label for ="Suma de valores de Producto">
+                </label></p>
+
+                <p><label for="ID Vendedor">
+                    <span>ID vendedor:</span>
+                    <label for ="Traer de Registro">
+                </label></p>
+
+                <p><label for="Vendedor">
+                    <span>Nombre del vendedor:</span>
+                    <label for ="Traer de Registro">
+                </label></p>
+
+            <input class="submitButton" type="submit" value="Registrar Venta">   
+
+            </form>
+
+        </section>    
+
+    </main>
+
+    <footer>
+        <figure>
+            <img src="../JUAN/resources/matrixLogistics_icon50px.png" alt="icon">
+            <span>Copyrigh MatrixStyle - Ministerio de las TIC - 2021</span>
+        </figure>
+    </footer>
+    
+</body></html>
