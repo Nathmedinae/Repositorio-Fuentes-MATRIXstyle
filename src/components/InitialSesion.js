@@ -4,7 +4,7 @@ function InitialSesion () {
     return (
         <main>
             <section>
-                <h2 class="subtitle_page">Inicio de sesión</h2>
+                <h2 className="subtitle_page">Inicio de sesión</h2>
                 <p>Ingrese sus datos para iniciar sesión en el módulo de gestión de usuarios:</p>
 
                 <form action="/MenuPrincipal" onsubmit="return()">

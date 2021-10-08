@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { GraphicHomeUsers } from "./ModuleUsersComp/GraphicHomeUsers";
 import { HomeUsersModule } from "./ModuleUsersComp/HomeUsersModule";
 import { NewUsers } from "./ModuleUsersComp/NewUsers";
 import { OldUsers } from "./ModuleUsersComp/OldUsers";
@@ -9,9 +10,10 @@ import { RoleUsersRegister } from "./ModuleUsersComp/RoleUsersRegister";
 function ModuleUsers () {
     return (
         <BrowserRouter>
+            <HomeUsersModule />
             <Switch>
                 <Route exact path="/Usuarios">
-                    <HomeUsersModule />
+                    <GraphicHomeUsers />
                 </Route>
                 <Route exact path="/Usuarios/NuevosUsuarios">
                     <NewUsers />
