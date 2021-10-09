@@ -1,5 +1,5 @@
 import React from "react";
-import statics from "../../resources/pinterest-statistics-02.png"
+import statics from "../../resources/pinterest-statistics-02.png";
 
 function GraphicHomeUsers () {
     return (

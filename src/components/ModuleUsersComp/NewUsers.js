@@ -4,7 +4,7 @@ function NewUsers () {
     return (
         <main>
             <section>
-                <h2 class="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
+                <h2 className="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
                 <form action="./sucess.html">
@@ -44,7 +44,7 @@ function NewUsers () {
                         <span>Password:</span>
                         <input type="password" id ="password" placeholder="Asigne un password" autocomplete="off" required/>
                     </label>
-                    <input class="submitButton" type="submit" value="Agregar usuario"/>
+                    <input className="submitButton" type="submit" value="Agregar usuario"/>
                 </form>
             </section>
         </main>

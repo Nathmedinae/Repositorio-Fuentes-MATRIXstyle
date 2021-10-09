@@ -10,24 +10,12 @@ function AppRouter () {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/">
-                    <InitialSesion />
-                </Route>
-                <Route exact path="/MenuPrincipal">
-                    <MenupMatrix />
-                </Route>
-                <Route exact path="/Ventas">
-                    <ModuleVentas />
-                </Route>
-                <Route exact path="/Productos">
-                    <ModuleProducts />
-                </Route>
-                <Route exact path="/Usuarios">
-                    <ModuleUsers />
-                </Route>
-                <Route path="*">
-                    <h1>Error 404</h1>
-                </Route>
+                <Route exact path="/" component={InitialSesion}/>
+                <Route exact path="/MenuPrincipal" component={MenupMatrix}/>
+                <Route exact path="/Ventas" component={ModuleVentas}/>
+                <Route exact path="/Productos" component={ModuleProducts}/>
+                <Route exact path="/Usuarios" component={ModuleUsers}/>
+                <Route path="*" component={<h1>Error 404</h1>}/>
             </Switch>
         </BrowserRouter>
     )

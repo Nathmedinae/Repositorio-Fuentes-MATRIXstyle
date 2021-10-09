@@ -12,24 +12,12 @@ function ModuleUsers () {
         <BrowserRouter>
             <HomeUsersModule />
             <Switch>
-                <Route exact path="/Usuarios">
-                    <GraphicHomeUsers />
-                </Route>
-                <Route exact path="/Usuarios/NuevosUsuarios">
-                    <NewUsers />
-                </Route>
-                <Route exact path="/Usuarios/UsuariosRegistrados">
-                    <OldUsers />
-                </Route>
-                <Route exact path="/Usuarios/NuevosRoles">
-                    <RoleUsersRegister />
-                </Route>
-                <Route exact path="/Usuarios/RolesRegistrados">
-                    <RoleUsers />
-                </Route>
-                <Route path="*">
-                    <h1>Error 404</h1>
-                </Route>
+                <Route exact path="/Usuarios" component={GraphicHomeUsers}/>
+                <Route exact path="/Usuarios/NuevosUsuarios" component={NewUsers}/>
+                <Route exact path="/Usuarios/UsuariosRegistrados" component={OldUsers}/>
+                <Route exact path="/Usuarios/NuevosRoles" component={RoleUsersRegister}/>
+                <Route exact path="/Usuarios/RolesRegistrados" component={RoleUsers}/>
+                <Route path="*" component={<h1>Error 404</h1>}/>
             </Switch>
         </BrowserRouter>
     )
