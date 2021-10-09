@@ -1,6 +1,10 @@
 import React from "react";
 
 function NewUsers () {
+
+    const onChangeInput = (msg) => {
+        alert(msg);
+    };
     return (
         <main>
             <section>
@@ -8,26 +12,30 @@ function NewUsers () {
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
                 <form action="./sucess.html">
-                    <label for="dni">
+                    <label htmlFor="dni">
                         <span>Número de documento de identidad:</span>
-                        <input type="number" id ="dni" min="7" placeholder="Escribe el número de documento" autocomplete="off" required/>
+                        <input type="number" id ="dni" min="7"
+                                placeholder="Escribe el número de documento"
+                                required
+                                onChange={()=> onChangeInput("DNI")}
+                                />
                     </label>
-                    <label for="nombre">
+                    <label htmlFor="nombre">
                         <span>Nombres:</span>
-                        <input type="text" id ="nombre" placeholder="Escribe los nombres" autocomplete="off" required/>
+                        <input type="text" id ="nombre" placeholder="Escribe los nombres" required/>
                     </label>
-                    <label for="apellido">
+                    <label htmlFor="apellido">
                         <span>Apellidos:</span>
-                        <input type="text" id ="apellido" placeholder="Escribe los apellidos" autocomplete="off" required/>
+                        <input type="text" id ="apellido" placeholder="Escribe los apellidos" required/>
                     </label>
 
-                    <label for="email">
+                    <label htmlFor="email">
                         <span>Correo:</span>
-                        <input type="email" id ="email" placeholder="Escribe el correo" autocomplete="off" required/>
+                        <input type="email" id ="email" placeholder="Escribe el correo" required/>
                     </label>
-                    <label for="perfil">
+                    <label htmlFor="perfil">
                         <span>Perfil:</span>
-                        <select name="perfil" id="perfil" autocomplete="off" required>
+                        <select name="perfil" id="perfil" required>
                             <option value="Coordinador de ventas">Operario</option>
                             <option value="Administrador">Vendedor</option>
                             <option value="Ejecutivo de ventas">Ejecutivo</option>
@@ -36,13 +44,13 @@ function NewUsers () {
                             <option value="Analista de ventas">Administrador</option>
                         </select>
                     </label>
-                    <label for="usuario">
+                    <label htmlFor="usuario">
                         <span>Nombre de usuario:</span>
-                        <input type="text" id ="username" placeholder="Escriba el nombre de usuario" autocomplete="off" required/>
+                        <input type="text" id ="username" placeholder="Escriba el nombre de usuario" required/>
                     </label>
-                    <label for="password">
+                    <label htmlFor="password">
                         <span>Password:</span>
-                        <input type="password" id ="password" placeholder="Asigne un password" autocomplete="off" required/>
+                        <input type="password" id ="password" placeholder="Asigne un password" required/>
                     </label>
                     <input className="submitButton" type="submit" value="Agregar usuario"/>
                 </form>

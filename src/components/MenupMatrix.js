@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import "../style.css";
 import salesIcon from "../resources/salesIcon_OK.png";
 import productIcon from "../resources/productIcon_OK.png";
