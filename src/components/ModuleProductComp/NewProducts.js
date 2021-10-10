@@ -6,8 +6,7 @@ function NewProducts () {
         <main>
      
             <section className="contenedorSeccion">
-                    <span>Información Básica</span>
-
+                   
                     <form action="">
 
                         <label htmlFor="codigo">
@@ -45,7 +44,7 @@ function NewProducts () {
                             </select>
                         </label>
                                              
-                        <span className="titulosSecciones">Clasificación / Características</span>
+                       
                         <label label htmlFor="categoria">
                             <span>Categoria:</span>
                             <input type="text" id="categoria" placeholder="Escribe la categoria" autocomplete="off" required />
@@ -66,13 +65,13 @@ function NewProducts () {
                             <input type="largo" id="largo" placeholder="%IVA" autocomplete="off" required />
                         </label>
                                         
-                        <span>Lista de Precios</span>
+                        
                         <label label htmlFor="Precio">
                             <span>Precio COP:</span>
-                            <input type="number" id="precio" placeholder="precio" autocomplete="off" required />
+                            <input type="number" id="Precio" placeholder="precio" autocomplete="off" required />
                         </label>
                             
-                        <span>Inventario</span>
+                      
                         <label label htmlFor="Unidades">
                             <span>Adicionar al Inventario</span>
                             <input type="Inventario" id="Inventario" placeholder="Inventario" autocomplete="off" required />

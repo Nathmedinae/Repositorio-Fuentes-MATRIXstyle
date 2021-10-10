@@ -1,12 +1,14 @@
 import React from "react";
 
-function ModifyProducts () {
 
-   
+function ModifyProducts () {
     return (
         <main>
             <section>
-                <span>Esta es la sección para modificar productos</span>
+                <figure>
+                    <h2 className="subtitle_page">Modificar Productos</h2>
+                                    
+                </figure>
             </section>
         </main>
     )
