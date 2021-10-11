@@ -1,47 +1,25 @@
-import React from "react";
-import {useState, useRef } from "react";
+import React, {useState, useRef} from "react";
 
 function NewUsers () {
 
-    // const [newUsers, setNewUsusers] = useState ({
-    //     dni:0,
-    //     name:"",
-    //     lastname:"",
-    //     email:"",
-    //     perfil:"",
-    //     username:"",
-    //     password:"",
-    // });
+    const form = useRef(null);
 
-    // const handleInputChange = (event) => {
-    //     setNewUsusers({
-    //         ...newUsers,
-    //         [event.target.name] : event.target.value
-    //     })
-    // };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(form.current);
+        const data = {
+            dni: formData.get("dni"),
+            name: formData.get("name"),
+            lastname: formData.get("lastname"),
+            email: formData.get("email"),
+            perfil: formData.get("perfil"),
+            usename: formData.get('email'),
+            password: formData.get('password')
+        }
+        console.log(data);
+    }
 
-    // const enviarNewUser = (event) => {
-    //     event.preventDefault();
-    //     console.log(newUsers.dni + newUsers.name + newUsers.lastname);
-    // };
 
-    const Login = () => {
-        const form = useRef(null);
-
-        const handleSubmit = (event) => {
-            event.preventDefault();
-            const formData = new FormData(form.current);
-            const data = {
-                dni: formData.get("dni"),
-                name: formData.get("name"),
-                lastname: formData.get("lastname"),
-                email: formData.get("email"),
-                perfil: formData.get("perfil"),
-                usename: formData.get('email'),
-                password: formData.get('password')
-            }
-            console.log(data);
-    }}
     
     return (
         <main>
@@ -49,7 +27,7 @@ function NewUsers () {
                 <h2 className="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
-                <form>
+                <form ref={form}>
                     <label htmlFor="dni">
                         <span>Número de documento de identidad:</span>
                         <input type="number" min="7"
@@ -107,7 +85,7 @@ function NewUsers () {
                                 required
                                 name="username"
                                 // onChange={handleInputChange}
-                                />
+                        />
                     </label>
                     <label htmlFor="password">
                         <span>Password:</span>
@@ -116,9 +94,9 @@ function NewUsers () {
                                 required
                                 name="password"
                                 // onChange={handleInputChange}
-                                />
+                        />
                     </label>
-                    <input className="submitButton" type="submit" onClick={handleSubmit}/>
+                    <input type="submit" onClick={handleSubmit}/>
                 </form>
             </section>
         </main>
