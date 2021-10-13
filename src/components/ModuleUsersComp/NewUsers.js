@@ -1,4 +1,5 @@
-import React, {useState, useRef} from "react";
+import axios from "axios";
+import React, {useRef} from "react";
 
 function NewUsers () {
 
@@ -7,20 +8,20 @@ function NewUsers () {
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(form.current);
-        const data = {
+        const dataNewUsers = {
             dni: formData.get("dni"),
             name: formData.get("name"),
             lastname: formData.get("lastname"),
             email: formData.get("email"),
             perfil: formData.get("perfil"),
-            usename: formData.get('email'),
+            username: formData.get('username'),
             password: formData.get('password')
         }
-        console.log(data);
+        console.log(dataNewUsers);
+        axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
+            .then(res => console.log(res.data), alert("Guardado con éxito"));
     }
 
-
-    
     return (
         <main>
             <section>
