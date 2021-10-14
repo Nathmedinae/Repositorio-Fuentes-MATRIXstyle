@@ -1,26 +1,36 @@
 import axios from "axios";
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 
-function NewUsers () {
+function EditUsers () {
 
-    const form = useRef(null);
+    const [users, setUsers] = useState([])
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const formData = new FormData(form.current);
-        const dataNewUsers = {
-            dni: formData.get("dni"),
-            name: formData.get("name"),
-            lastname: formData.get("lastname"),
-            email: formData.get("email"),
-            perfil: formData.get("perfil"),
-            username: formData.get('username'),
-            password: formData.get('password')
-        }
-        console.log(dataNewUsers);
-        axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
-            .then(res => console.log(res.data), alert("Guardado con éxito"));
+    const obtenerDatos = async () => {
+        
+        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + "_id")
+        const saveUsers = await data.json()
+        console.log(saveUsers);
+        setUsers(saveUsers)
     }
+
+    // const form = useRef(null);
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     const formData = new FormData(form.current);
+    //     const dataNewUsers = {
+    //         dni: formData.get("dni"),
+    //         name: formData.get("name"),
+    //         lastname: formData.get("lastname"),
+    //         email: formData.get("email"),
+    //         perfil: formData.get("perfil"),
+    //         username: formData.get('username'),
+    //         password: formData.get('password')
+    //     }
+    //     console.log(dataNewUsers);
+    //     axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
+    //         .then(res => console.log(res.data), alert("Guardado con éxito"));
+    // }
 
     return (
         <main>
@@ -28,7 +38,7 @@ function NewUsers () {
                 <h2 className="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
-                <form ref={form} onSubmit={handleSubmit}>
+                <form >
                     <label htmlFor="dni">
                         <span>Número de documento de identidad:</span>
                         <input type="number" minLength="7"
@@ -104,4 +114,4 @@ function NewUsers () {
     )
 };
 
-export {NewUsers};
+export {EditUsers};

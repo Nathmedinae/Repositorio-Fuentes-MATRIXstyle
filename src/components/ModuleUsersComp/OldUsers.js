@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Link} from "react";
 import editIcon from "../../resources/edit_icon.png";
 import trashIcon from "../../resources/trash_icon50px.png";
 
@@ -15,6 +15,10 @@ function OldUsers () {
         const saveUsers = await data.json()
         console.log(saveUsers);
         setUsers(saveUsers)
+    }
+
+    const callUser = async (event) => {
+        console.log(event);
     }
 
     return (
@@ -63,7 +67,6 @@ function OldUsers () {
                     <th>Rol</th>
                     <th>Nombre de usuario</th>
                     <th>Password</th>
-                    <th>Estado</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
@@ -74,9 +77,8 @@ function OldUsers () {
                     {<td>{users.map(item => (<tr key={item._id}>{item.perfil}</tr>))}</td>}
                     {<td>{users.map(item => (<tr key={item._id}>{item.username}</tr>))}</td>}
                     {<td>{users.map(item => (<tr key={item._id}>{item.password}</tr>))}</td>}
-                    <td>Estado</td>
-                    <td>Editar</td>
-                    <td>Eliminar</td>
+                    {<td>{users.map(item => (<tr key={item._id}>Editar</tr>))}</td>}
+                    {<td>{users.map(item => (<tr key={item._id}>Eliminar</tr>))}</td>}
             <tbody/>
         </main>
     )

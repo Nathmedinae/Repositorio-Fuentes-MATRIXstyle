@@ -1,5 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import { EditUsers } from "./ModuleUsersComp/EditUsers";
 import { GraphicHomeUsers } from "./ModuleUsersComp/GraphicHomeUsers";
 import { HomeUsersModule } from "./ModuleUsersComp/HomeUsersModule";
 import { NewUsers } from "./ModuleUsersComp/NewUsers";
@@ -15,6 +16,7 @@ function ModuleUsers () {
                 <Route exact path="/Usuarios" component={GraphicHomeUsers}/>
                 <Route exact path="/Usuarios/NuevosUsuarios" component={NewUsers}/>
                 <Route exact path="/Usuarios/UsuariosRegistrados" component={OldUsers}/>
+                <Route exact path="/Usuarios/EditarUsuarios" component={EditUsers}/>
                 <Route exact path="/Usuarios/NuevosRoles" component={RoleUsersRegister}/>
                 <Route exact path="/Usuarios/RolesRegistrados" component={RoleUsers}/>
                 <Route path="*" component={<h1>Error 404</h1>}/>
