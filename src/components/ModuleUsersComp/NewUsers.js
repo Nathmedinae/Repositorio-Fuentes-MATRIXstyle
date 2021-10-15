@@ -25,11 +25,11 @@ function NewUsers () {
     return (
         <main>
             <section>
-                <h2 className="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
+                <h2 className="subtitle_page">Creación de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
                 <form ref={form} onSubmit={handleSubmit}>
-                    <label htmlFor="dni">
+                    <label>
                         <span>Número de documento de identidad:</span>
                         <input type="number" minLength="7"
                                 placeholder="Escribe el número de documento"
@@ -38,18 +38,18 @@ function NewUsers () {
                                 // onChange={handleInputChange}
                                 />
                     </label>
-                    <label htmlFor="nombre">
+                    <label>
                         <span>Nombres:</span>
-                        <input type="text" id ="nombre"
+                        <input type="text"
                                 placeholder="Escribe los nombres"
                                 required
                                 name="name"
                                 // onChange={handleInputChange}
                                 />
                     </label>
-                    <label htmlFor="apellido">
+                    <label>
                         <span>Apellidos:</span>
-                        <input type="text" id ="apellido"
+                        <input type="text"
                                 placeholder="Escribe los apellidos"
                                 required
                                 name="lastname"
@@ -57,9 +57,9 @@ function NewUsers () {
                                 />
                     </label>
 
-                    <label htmlFor="email">
+                    <label>
                         <span>Correo:</span>
-                        <input type="email" id ="email"
+                        <input type="email"
                                 placeholder="Escribe el correo"
                                 required
                                 name="email"
@@ -67,9 +67,9 @@ function NewUsers () {
                                 />
                     </label>
 
-                    <label htmlFor="perfil">
+                    <label>
                         <span>Perfil:</span>
-                        <select name="perfil" id="perfil" required name="perfil">
+                        <select name="perfil" required name="perfil">
                             <option value="Operario">Operario</option>
                             <option value="Vendedor">Vendedor</option>
                             <option value="Ejecutivo">Ejecutivo</option>
@@ -79,25 +79,25 @@ function NewUsers () {
                         </select>
                     </label>
 
-                    <label htmlFor="usuario">
+                    <label>
                         <span>Nombre de usuario:</span>
-                        <input type="text" id ="username"
+                        <input type="text"
                                 placeholder="Escriba el nombre de usuario"
                                 required
                                 name="username"
                                 // onChange={handleInputChange}
                         />
                     </label>
-                    <label htmlFor="password">
+                    <label>
                         <span>Password:</span>
-                        <input type="password" id ="password"
+                        <input type="password"
                                 placeholder="Asigne un password"
                                 required
                                 name="password"
                                 // onChange={handleInputChange}
                         />
                     </label>
-                    <input type="submit"/>
+                    <input type="submit" value="Crear usuario"/>
                 </form>
             </section>
         </main>

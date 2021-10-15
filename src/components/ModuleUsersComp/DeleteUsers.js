@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useLocation } from 'react-router-dom';
 import axios from "axios";
-import { OldUsers } from "../ModuleUsersComp/OldUsers";
 
 function DeleteUsers () {
 
@@ -32,7 +31,7 @@ function DeleteUsers () {
         <main>
             <h1>Usuario a eliminar</h1>
             <span>Revise la información del usuario que desea eliminar</span>
-            <tbody/>
+            <div/>
                 <tr>
                     <th>Documento de identidad</th>
                     <th>Nombres y apellidos</th>
@@ -48,7 +47,7 @@ function DeleteUsers () {
                     <td>{users.perfil}</td>
                     <td>{users.username}</td>
                 </tr>
-            <tbody/>
+            <div/>
 
             <button onClick={handleSubmit}>Eliminar usuario</button>
         </main>

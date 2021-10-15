@@ -41,6 +41,7 @@ function EditUsers () {
         console.log(dataEditUsers);
         axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/update', dataEditUsers)
             .then(res => console.log(res.data), alert("Usuario actualizado con éxito"));
+        window.location.assign("/Usuarios");
     }
 
     return (
@@ -50,7 +51,7 @@ function EditUsers () {
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
                 <form ref={form} onSubmit={handleSubmit}>
-                    <label htmlFor="dni">
+                    <label>
                         <span>Número de documento de identidad:</span>
                         <input type="number" minLength="7"
                                 placeholder="Escribe el número de documento"
@@ -60,7 +61,7 @@ function EditUsers () {
                                 value={users.dni}
                                 />
                     </label>
-                    <label htmlFor="nombre">
+                    <label>
                         <span>Nombres:</span>
                         <input type="text" id ="nombre"
                                 placeholder="Escribe los nombres"
@@ -70,7 +71,7 @@ function EditUsers () {
                                 value={users.name}
                                 />
                     </label>
-                    <label htmlFor="apellido">
+                    <label>
                         <span>Apellidos:</span>
                         <input type="text" id ="apellido"
                                 placeholder="Escribe los apellidos"
@@ -81,7 +82,7 @@ function EditUsers () {
                                 />
                     </label>
 
-                    <label htmlFor="email">
+                    <label>
                         <span>Correo:</span>
                         <input type="email" id ="email"
                                 placeholder="Escribe el correo"
@@ -92,7 +93,7 @@ function EditUsers () {
                                 />
                     </label>
 
-                    <label htmlFor="perfil">
+                    <label>
                         <span>Perfil:</span>
                         <select name="perfil" id="perfil" required name="perfil" onChange={handleInputChange} value={users.perfil}>
                         <option value="Operario">Operario</option>
@@ -104,7 +105,7 @@ function EditUsers () {
                         </select>
                     </label>
 
-                    <label htmlFor="usuario">
+                    <label>
                         <span>Nombre de usuario:</span>
                         <input type="text" id ="username"
                                 placeholder="Escriba el nombre de usuario"
@@ -114,7 +115,7 @@ function EditUsers () {
                                 value={users.username}
                         />
                     </label>
-                    <label htmlFor="password">
+                    <label>
                         <span>Password:</span>
                         <input type="password" id ="password"
                                 placeholder="Asigne un password"
@@ -124,7 +125,7 @@ function EditUsers () {
                                 value={users.password}
                         />
                     </label>
-                    <input type="submit"/>
+                    <input type="submit" value="Actualizar usuario"/>
                 </form>
             </section>
         </main>

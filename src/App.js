@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import "./style.css";
-import {AppRouter} from "./Routers/AppRouter";
+import {AppRouter} from './Routers/AppRouter';
 import { HeaderMatrix } from './components/HeaderMatrix';
-import * as Realm from "realm-web";
+// import * as Realm from "realm-web";
 
 // const app = new Realm.App({ id: "matrix-xlvch" });
 
@@ -46,11 +46,11 @@ import * as Realm from "realm-web";
 
 function App() {
   return (
-    <React.Fragment>
+    <Fragment>
       <HeaderMatrix />
       <AppRouter />
-    </React.Fragment>
+    </Fragment>
   );
-}
+};
 
 export default App;

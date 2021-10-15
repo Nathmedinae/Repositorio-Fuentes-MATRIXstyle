@@ -5,30 +5,30 @@ import trashIcon from "../../resources/trash_icon50px.png";
 function RoleUsers () {
     return (
         <main>
-                <h2 class="subtitle_page" id="regRoles">Roles registrados</h2>
+                <h2 class="subtitle_page">Roles registrados</h2>
 
                 <section>
-                    <form action="" class="form2">
+                    <form class="form2">
                         <span>Búsqueda por palabra clave:</span>
                         <label for="searchRoles">
-                            <input type="search" id ="searchRoles" placeholder="Escribe una palabra clave" autocomplete="off"/>
+                            <input type="search" placeholder="Escribe una palabra clave" required autoComplete="off"/>
                         </label>
                         <input class="submitButton" type="submit" value="Buscar"/>
                     </form>
         
-                    <form action="" class="form2">
+                    <form class="form2">
                         <span>Búsqueda por filtros:</span>
-                        <label for="">
+                        <label>
                             <span>Permisos:</span>
-                            <select name="rol" id="rol" autocomplete="off" required>
+                            <select name="rol" autoComplete="off" required>
                                 <option value="modVentas">Módulo de ventas</option>
                                 <option value="modProductos">Módulo de productos</option>
                                 <option value="modUsers">Módulo de usuarios </option>
                             </select>
                         </label>
-                        <label for="">
+                        <label>
                             <span>Estado:</span>
-                            <select name="perfil" id="perfil" autocomplete="off" required>
+                            <select name="perfil" autoComplete="off" required>
                                 <option value="activo">Activo</option>
                                 <option value="inactivo">Inactivo</option>
                             </select>

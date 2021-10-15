@@ -10,11 +10,11 @@ function InitialSesion () {
                 <form action="/MenuPrincipal" onsubmit="return()">
                     <label for="usuarioLabel">
                         <span>Usuario:</span>
-                        <input type="text" id ="usuario" placeholder="Escribe tu nombre de usuario" autocomplete="username" required/>
+                        <input type="text" id ="usuario" placeholder="Escribe tu nombre de usuario" autoComplete="username" required/>
                     </label>
                     <label for="passwordLabel">
                         <span>Contraseña:</span>
-                        <input type="password" id ="password" placeholder="Escribe tu password" autocomplete="current-password" required/>
+                        <input type="password" id ="password" placeholder="Escribe tu password" autoComplete="current-password" required/>
                     </label>
                         <input class="submitButton" type="submit" value="Ingresar"/>
                 </form>

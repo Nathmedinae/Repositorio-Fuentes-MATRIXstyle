@@ -1,34 +1,28 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import { Link } from 'react-router-dom';
 // import editIcon from "../../resources/edit_icon.png";
 // import trashIcon from "../../resources/trash_icon50px.png";
 
 function OldUsers () {
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         obtenerDatos()
       }, []);
 
     const obtenerDatos = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/get')
-        const saveUsers = await data.json()
-        console.log(saveUsers);
+        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/get');
+        const saveUsers = await data.json();
         setUsers(saveUsers)
     }
 
-    const callUser = async (event) => {
-        console.log(event);
-    }
-
     return (
-        
+        <Fragment>
         <main>
-            <h2 id="regUsers"className="subtitle_page">Usuarios registrados</h2>
+            <h2 className="subtitle_page">Usuarios registrados</h2>
 
 
-        
             {/* <form action="" className="form2">
                 <span>Búsqueda por palabra clave:</span>
                 <label for="">
@@ -60,7 +54,7 @@ function OldUsers () {
                 <input className="submitButton" type="submit" value="Buscar"/>
             </form> */}
 
-            <tbody/>
+            <div/>
                 <tr>
                     <th>Documento de identidad</th>
                     <th>Nombres y apellidos</th>
@@ -71,17 +65,23 @@ function OldUsers () {
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
-
-                    {<td>{users.map(item => (<tr key={item._id}>{item.dni}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>{item.name} {item.lastname}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>{item.email}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>{item.perfil}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>{item.username}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>{item.password}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></tr>))}</td>}
-            <tbody/>
+               
+                {users.map(item => (<tr>
+                                        <td key={item._id}>{item.dni}<br/></td>
+                                        <td key={item._id}>{item.name} {item.lastname}<br/></td>
+                                        <td key={item._id}>{item.email}</td>
+                                        <td key={item._id}>{item.perfil}</td>
+                                        <td key={item._id}>{item.username}</td>
+                                        <td key={item._id}>{item.password}</td>
+                                        <td key={item._id}><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
+                                        <td key={item._id}><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
+                                    </tr>       
+                ))}
+            <div/>
         </main>
+
+        </Fragment>
+
     )
 };
 
