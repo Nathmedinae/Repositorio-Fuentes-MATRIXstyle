@@ -19,7 +19,7 @@ function NewUsers () {
         }
         console.log(dataNewUsers);
         axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
-            .then(res => console.log(res.data), alert("Guardado con éxito"));
+            .then(res => console.log(res.data), alert("Usuario creado con éxito"));
     }
 
     return (
@@ -70,12 +70,12 @@ function NewUsers () {
                     <label htmlFor="perfil">
                         <span>Perfil:</span>
                         <select name="perfil" id="perfil" required name="perfil">
-                            <option value="Coordinador de ventas">Operario</option>
-                            <option value="Administrador">Vendedor</option>
-                            <option value="Ejecutivo de ventas">Ejecutivo</option>
-                            <option value="Coordinador de ventas">Gerente comercial</option>
-                            <option value="Coordinador de ventas">Director</option>
-                            <option value="Analista de ventas">Administrador</option>
+                            <option value="Operario">Operario</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Ejecutivo">Ejecutivo</option>
+                            <option value="Gerente comercial">Gerente comercial</option>
+                            <option value="Director">Director</option>
+                            <option value="Administrador">Administrador</option>
                         </select>
                     </label>
 

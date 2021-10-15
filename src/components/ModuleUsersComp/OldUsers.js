@@ -1,6 +1,7 @@
-import React, {useState, useEffect, Link} from "react";
-import editIcon from "../../resources/edit_icon.png";
-import trashIcon from "../../resources/trash_icon50px.png";
+import React, {useState, useEffect} from "react";
+import { Link } from 'react-router-dom';
+// import editIcon from "../../resources/edit_icon.png";
+// import trashIcon from "../../resources/trash_icon50px.png";
 
 function OldUsers () {
 
@@ -77,8 +78,8 @@ function OldUsers () {
                     {<td>{users.map(item => (<tr key={item._id}>{item.perfil}</tr>))}</td>}
                     {<td>{users.map(item => (<tr key={item._id}>{item.username}</tr>))}</td>}
                     {<td>{users.map(item => (<tr key={item._id}>{item.password}</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>Editar</tr>))}</td>}
-                    {<td>{users.map(item => (<tr key={item._id}>Eliminar</tr>))}</td>}
+                    {<td>{users.map(item => (<tr key={item._id}><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></tr>))}</td>}
+                    {<td>{users.map(item => (<tr key={item._id}><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></tr>))}</td>}
             <tbody/>
         </main>
     )

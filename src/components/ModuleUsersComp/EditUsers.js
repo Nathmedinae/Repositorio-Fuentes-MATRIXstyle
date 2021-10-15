@@ -1,36 +1,47 @@
 import axios from "axios";
-import React, {useRef, useState} from "react";
+import React, {useRef, useState, useEffect} from "react";
+import {useLocation } from 'react-router-dom';
 
 function EditUsers () {
 
+    const location = useLocation()
+    const idUser = location.pathname.split("/").pop()
+
     const [users, setUsers] = useState([])
 
-    const obtenerDatos = async () => {
-        
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + "_id")
+    useEffect(() => {
+        obtenerDatosUser()
+      }, []);
+
+    const obtenerDatosUser = async () => {
+        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + idUser)
         const saveUsers = await data.json()
-        console.log(saveUsers);
         setUsers(saveUsers)
     }
 
-    // const form = useRef(null);
+    const handleInputChange = (e) => {
+        setUsers({[e.target.name]: e.target.value});
+    }
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     const formData = new FormData(form.current);
-    //     const dataNewUsers = {
-    //         dni: formData.get("dni"),
-    //         name: formData.get("name"),
-    //         lastname: formData.get("lastname"),
-    //         email: formData.get("email"),
-    //         perfil: formData.get("perfil"),
-    //         username: formData.get('username'),
-    //         password: formData.get('password')
-    //     }
-    //     console.log(dataNewUsers);
-    //     axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
-    //         .then(res => console.log(res.data), alert("Guardado con éxito"));
-    // }
+    const form = useRef(null);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const formData = new FormData(form.current);
+        const dataEditUsers = {
+            user_id: idUser,
+            dni: formData.get("dni"),
+            name: formData.get("name"),
+            lastname: formData.get("lastname"),
+            email: formData.get("email"),
+            perfil: formData.get("perfil"),
+            username: formData.get('username'),
+            password: formData.get('password')
+        }
+        console.log(dataEditUsers);
+        axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/update', dataEditUsers)
+            .then(res => console.log(res.data), alert("Usuario actualizado con éxito"));
+    }
 
     return (
         <main>
@@ -38,14 +49,15 @@ function EditUsers () {
                 <h2 className="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
-                <form >
+                <form ref={form} onSubmit={handleSubmit}>
                     <label htmlFor="dni">
                         <span>Número de documento de identidad:</span>
                         <input type="number" minLength="7"
                                 placeholder="Escribe el número de documento"
                                 required
                                 name="dni"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.dni}
                                 />
                     </label>
                     <label htmlFor="nombre">
@@ -54,7 +66,8 @@ function EditUsers () {
                                 placeholder="Escribe los nombres"
                                 required
                                 name="name"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.name}
                                 />
                     </label>
                     <label htmlFor="apellido">
@@ -63,7 +76,8 @@ function EditUsers () {
                                 placeholder="Escribe los apellidos"
                                 required
                                 name="lastname"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.lastname}
                                 />
                     </label>
 
@@ -73,19 +87,20 @@ function EditUsers () {
                                 placeholder="Escribe el correo"
                                 required
                                 name="email"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.email}
                                 />
                     </label>
 
                     <label htmlFor="perfil">
                         <span>Perfil:</span>
-                        <select name="perfil" id="perfil" required name="perfil">
-                            <option value="Coordinador de ventas">Operario</option>
-                            <option value="Administrador">Vendedor</option>
-                            <option value="Ejecutivo de ventas">Ejecutivo</option>
-                            <option value="Coordinador de ventas">Gerente comercial</option>
-                            <option value="Coordinador de ventas">Director</option>
-                            <option value="Analista de ventas">Administrador</option>
+                        <select name="perfil" id="perfil" required name="perfil" onChange={handleInputChange} value={users.perfil}>
+                        <option value="Operario">Operario</option>
+                            <option value="Vendedor">Vendedor</option>
+                            <option value="Ejecutivo">Ejecutivo</option>
+                            <option value="Gerente comercial">Gerente comercial</option>
+                            <option value="Director">Director</option>
+                            <option value="Administrador">Administrador</option>
                         </select>
                     </label>
 
@@ -95,7 +110,8 @@ function EditUsers () {
                                 placeholder="Escriba el nombre de usuario"
                                 required
                                 name="username"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.username}
                         />
                     </label>
                     <label htmlFor="password">
@@ -104,7 +120,8 @@ function EditUsers () {
                                 placeholder="Asigne un password"
                                 required
                                 name="password"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.password}
                         />
                     </label>
                     <input type="submit"/>
