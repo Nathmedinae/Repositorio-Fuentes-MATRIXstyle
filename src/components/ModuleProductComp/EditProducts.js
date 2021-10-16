@@ -23,11 +23,11 @@ function EditProducts () {
         setProducts({[e.target.name]: e.target.value});
     }
 
-    const form = useRef(null);
+    const form2= useRef(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const formData = new FormData(form.current);
+        const formData = new FormData(form2.current);
         const dataEditProducts = {
             product_id: idProduct,
             codigo: formData.get("codigo"),
@@ -43,7 +43,7 @@ function EditProducts () {
         console.log(dataEditProducts);
         axios.post('https://webhooks.mongodb-realm.com/api/client/v2.0/app/matrix-pfeao/service/Matrix/incoming_webhook/update', dataEditProducts)
             .then(res => console.log(res.data), alert("Producto actualizado con éxito"));
-        window.location.assign("/Productos");
+        window.location.assign("/Productos/ProductosActivos");
     }
 
     return (
@@ -52,7 +52,7 @@ function EditProducts () {
      
             <section className="contenedorSeccion">
                    
-            <form ref={form} onSubmit={handleSubmit}>
+            <form ref={form2} onSubmit={handleSubmit}>
 
                         <label htmlFor="codigo">
                             <span>Código de Producto:</span>
