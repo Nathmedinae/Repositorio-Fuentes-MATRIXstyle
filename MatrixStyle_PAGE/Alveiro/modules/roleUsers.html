@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Esta es una breve descripción de la página, es importante para que e los buscadores aparezca esta descripción.">
+    <meta name="robots" content="index,follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de gestión de usuarios</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <figure>
+            <img src="../resources/matrixLogistics_icon2.png" alt="icon">
+        </figure>
+        <h1>Módulo de gestión de usuarios</h1>
+    </header>
+
+    <main>
+        <section>
+            <nav>
+                <ul>
+                    <li><a class="active" href="homeUsersModule.html">Inicio</a></li>
+                    <li><a href="#createRoles">Creación de nuevos roles</a></li>
+                    <li><a href="./roleUsersRegister.html">Roles registrados</a></li>
+                    <li><a id="exit" class="active" href="inputUsersModule.html">Salida segura</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section>
+            <h2 class="subtitle_page" id="createRoles">Creación de nuevos roles</h2>
+            <p>Para crear un nuevo rol diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
+            
+            <form action="./sucess.html">
+                <label for="nombreRol">
+                    <span>Nombre del rol:</span>
+                    <input type="text" id ="nombreRol" placeholder="Escribe el nuevo tipo de rol" autocomplete="off" required>
+                </label>
+
+                <label for="estado">
+                    <span>Estado:</span>
+                    <select name="estado" id="estado" autocomplete="off" required>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                    </select>
+                </label>
+                <label for="checkVentas" class="labelCheck">
+                    <input class="inputCheck" type="checkbox" name="checkVentas" id="checkVentas" autocomplete="off">
+                    Módulo de ventas
+                </label>
+                <label for="checkProductos" class="labelCheck">
+                    <input class="inputCheck" type="checkbox" name="checkProductos" id="checkProductos">
+                    Módulo de productos
+                </label>
+                </label>
+                <label for="checkUsers" class="labelCheck">
+                    <input class="inputCheck" type="checkbox" name="checkUsers" id="checkUsers">
+                    Módulo de usuarios
+                </label>
+
+                <input class="submitButton" type="submit" value="Agregar rol">
+            </form>
+        </section>
+
+        
+    </main>
+
+    <footer>
+        <figure>
+            <img src="../resources/matrixLogistics_icon50px.png" alt="icon">
+            <span>Copyrigh MatrixStyle - Ministerio de las TIC - 2021</span>
+        </figure>
+    </footer>
+    
+</body>
+</html>
