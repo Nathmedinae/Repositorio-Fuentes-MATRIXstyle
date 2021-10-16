@@ -19,7 +19,6 @@ function OldUsers () {
 
     return (
         <Fragment>
-        <main>
             <h2 className="subtitle_page">Usuarios registrados</h2>
 
 
@@ -54,31 +53,36 @@ function OldUsers () {
                 <input className="submitButton" type="submit" value="Buscar"/>
             </form> */}
 
-            <div/>
-                <tr>
-                    <th>Documento de identidad</th>
-                    <th>Nombres y apellidos</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Nombre de usuario</th>
-                    <th>Password</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-               
-                {users.map(item => (<tr>
-                                        <td key={item._id}>{item.dni}<br/></td>
-                                        <td key={item._id}>{item.name} {item.lastname}<br/></td>
-                                        <td key={item._id}>{item.email}</td>
-                                        <td key={item._id}>{item.perfil}</td>
-                                        <td key={item._id}>{item.username}</td>
-                                        <td key={item._id}>{item.password}</td>
-                                        <td key={item._id}><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
-                                        <td key={item._id}><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
-                                    </tr>       
-                ))}
-            <div/>
-        </main>
+            <main>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Documento de identidad</th>
+                            <th>Nombres y apellidos</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Nombre de usuario</th>
+                            <th>Password</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    
+                        {users.map((item, i) => (<tr>
+                                                <td key={i}>{item.dni}<br/></td>
+                                                <td key={i}>{item.name} {item.lastname}<br/></td>
+                                                <td key={i}>{item.email}</td>
+                                                <td key={i}>{item.perfil}</td>
+                                                <td key={i}>{item.username}</td>
+                                                <td key={i}>{item.password}</td>
+                                                <td key={i}><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
+                                                <td key={i}><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
+                                            </tr>       
+                        ))}
+                    </tbody>
+                </table>
+            </main>
+
+
 
         </Fragment>
 
