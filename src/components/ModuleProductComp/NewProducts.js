@@ -1,42 +1,62 @@
-import React from 'react'
+import axios from "axios";
+import React, {useRef} from "react";
+
 
 function NewProducts () {
+
+
+        const form = useRef(null);
+        const handleSubmit = (event) =>{
+        event.preventDefault ();
+        const formData = new FormData(form.current);
+        const dataNewProducts = {
+            codigo: formData.get("codigo"),   
+            descripcion: formData.get("descripcion"), 
+            color: formData.get("color"), 
+            talla: formData.get("talla"), 
+            categoria: formData.get("categoria"), 
+            precio: formData.get("precio"), 
+            inventario: formData.get("inventario") 
+        
+        }    
+        console.log (dataNewProducts); 
+        axios.post('https://webhooks.mongodb-realm.com/api/client/v2.0/app/matrix-pfeao/service/Matrix/incoming_webhook/add', dataNewProducts)
+        .then(res=> console.log(res.data), alert("Guardado con éxito"));
+    
+        }
     return (
 
         <main>
      
             <section className="contenedorSeccion">
                    
-                    <form action="">
+            <form ref={form} onSubmit={handleSubmit}>
 
                         <label htmlFor="codigo">
                             <span>Código de Producto:</span>
-                            <input type="number" id="codigo" placeholder="Escribe el Código" autocomplete="off" required />
+                            <input name='codigo' type="number" id="codigo" placeholder="Escribe el Código" autocomplete="off" required />
                         </label>
                         <label htmlFor="nombre">
                             <span>Nombre de Producto:</span>
-                            <input type="text" id="nombre" placeholder="Escribe el Nombre del Producto" autocomplete="off" required />
+                            <input  name='nombre' type="text" id="nombre" placeholder="Escribe el Nombre del Producto" autocomplete="off" required />
                         </label>
-                        <label htmlFor="Resumen">
-                            <span>Resumen:</span>
-                            <input type="text" id="resumen" placeholder="Escribe Resumen breve" autocomplete="off" required />
-                        </label>
-                        <label htmlFor="nombre">
+                        
+                        <label htmlFor="Descripcion">
                             <span>Descripción:</span>
-                            <input type="text" id="descripción" placeholder="Descripciòn de Producto" autocomplete="off" required />
+                            <input name='cescripcion'type="text" id="descripción" placeholder="Descripciòn de Producto" autocomplete="off" required />
                         </label>
-                        <label htmlFor="Color">
+                        <label htmlFor="color">
                             <span>Color:</span>
-                            <select name="Color">
+                            <select name='color'>
                                 <option value="Blanco">Blanco</option>
                                 <option value="Negro">Negro</option>
                                 <option value="Gris">Gris</option>
                             </select>
 
                         </label>
-                        <label htmlFor="Talla">
+                        <label htmlFor="talla">
                             <span>Talla:</span>
-                            <select name="Talla">
+                            <select name='talla'>
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
@@ -47,40 +67,28 @@ function NewProducts () {
                        
                         <label label htmlFor="categoria">
                             <span>Categoria:</span>
-                            <input type="text" id="categoria" placeholder="Escribe la categoria" autocomplete="off" required />
+                            <input name= 'categoria' type="text" id="categoria" placeholder="Escribe la categoria" autocomplete="off" required />
                         </label>
 
-                        <label label htmlFor="IVA">
-                            <span>%IVA:</span>
-                            <input type="number" id="IVA" placeholder="%IVA" autocomplete="off" required />
-                        </label>
-
-                        <label label htmlFor="Peso">
-                            <span>Peso kg:</span>
-                            <input type="number" id="Peso" placeholder="Escribe el Peso" autocomplete="off" required />
-                        </label>
-
-                        <label label htmlFor="Largo">
-                            <span>Largo cm:</span>
-                            <input type="largo" id="largo" placeholder="%IVA" autocomplete="off" required />
-                        </label>
-                                        
+                                                               
                         
                         <label label htmlFor="Precio">
                             <span>Precio COP:</span>
-                            <input type="number" id="Precio" placeholder="precio" autocomplete="off" required />
+                            <input  name='precio' type="number" id="Precio" placeholder="precio" autocomplete="off" required />
                         </label>
                             
                       
-                        <label label htmlFor="Unidades">
+                        <label label htmlFor="Inventario">
                             <span>Adicionar al Inventario</span>
-                            <input type="Inventario" id="Inventario" placeholder="Inventario" autocomplete="off" required />
-                        </label>
+                            <input name='inventario' type="Inventario" id="Inventario" placeholder="Inventario" autocomplete="off" required />
+                        </label> 
               
-                        <input class="submitButton" type="submit" value="Agregar Producto" />
+                        <input  type="submit" value="Agregar Producto" />
                     </form>
                 </section>    
         </main>
+
+       
     )
 };
 
