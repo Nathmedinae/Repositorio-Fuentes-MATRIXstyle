@@ -15,7 +15,7 @@ function AppRouter () {
                 <Route exact path="/Ventas" component={ModuleVentas}/>
                 <Route exact path="/Productos" component={ModuleProducts}/>
                 <Route exact path="/Usuarios" component={ModuleUsers}/>
-                <Route path="*" component={<h1>Error 404</h1>}/>
+                <Route path="*" component={"Error-404"}/>
             </Switch>
         </BrowserRouter>
     )

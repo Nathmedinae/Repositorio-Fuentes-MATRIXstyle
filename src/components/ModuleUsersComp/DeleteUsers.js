@@ -19,7 +19,6 @@ function DeleteUsers () {
         setUsers(saveUsers)
     }
 
-
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.delete('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/delete?id=' + idUser)

@@ -11,6 +11,7 @@ function EditUsers () {
 
     useEffect(() => {
         obtenerDatosUser()
+        obtenerDatos()
       }, []);
 
     const obtenerDatosUser = async () => {
@@ -44,10 +45,18 @@ function EditUsers () {
         window.location.assign("/Usuarios");
     }
 
+    const [roles, setRoles] = useState([]);
+
+    const obtenerDatos = async () => {
+        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
+        const saveRoles = await data.json();
+        setRoles(saveRoles)
+    }
+
     return (
         <main>
             <section>
-                <h2 className="subtitle_page" id="createUsers">Creación de nuevos usuarios</h2>
+                <h2 className="subtitle_page">Creación de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
                 <form ref={form} onSubmit={handleSubmit}>
@@ -95,13 +104,8 @@ function EditUsers () {
 
                     <label>
                         <span>Perfil:</span>
-                        <select name="perfil" id="perfil" required name="perfil" onChange={handleInputChange} value={users.perfil}>
-                        <option value="Operario">Operario</option>
-                            <option value="Vendedor">Vendedor</option>
-                            <option value="Ejecutivo">Ejecutivo</option>
-                            <option value="Gerente comercial">Gerente comercial</option>
-                            <option value="Director">Director</option>
-                            <option value="Administrador">Administrador</option>
+                        <select name="perfil" required name="perfil" onChange={handleInputChange} value={users.perfil}>
+                            {roles.map(item => (<option key={item._id}>{item.nombreRol}</option>))}
                         </select>
                     </label>
 

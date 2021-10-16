@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useRef} from "react";
+import React, {useRef, useState, useEffect} from "react";
 
 function NewUsers () {
 
@@ -20,6 +20,18 @@ function NewUsers () {
         console.log(dataNewUsers);
         axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
             .then(res => console.log(res.data), alert("Usuario creado con éxito"));
+    }
+
+    const [roles, setRoles] = useState([]);
+
+    useEffect(() => {
+        obtenerDatos()
+      }, []);
+
+    const obtenerDatos = async () => {
+        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
+        const saveRoles = await data.json();
+        setRoles(saveRoles)
     }
 
     return (
@@ -70,12 +82,7 @@ function NewUsers () {
                     <label>
                         <span>Perfil:</span>
                         <select name="perfil" required name="perfil">
-                            <option value="Operario">Operario</option>
-                            <option value="Vendedor">Vendedor</option>
-                            <option value="Ejecutivo">Ejecutivo</option>
-                            <option value="Gerente comercial">Gerente comercial</option>
-                            <option value="Director">Director</option>
-                            <option value="Administrador">Administrador</option>
+                            {roles.map(item => (<option key={item._id}>{item.nombreRol}</option>))}
                         </select>
                     </label>
 
