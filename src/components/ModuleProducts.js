@@ -3,8 +3,9 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import { HomeProductModule } from "./ModuleProductComp/HomeProductModule";
 import { ActiveProducts} from "./ModuleProductComp/ActiveProducts";
 import { NewProducts} from "./ModuleProductComp/NewProducts";
-import { ModifyProducts} from "./ModuleProductComp/ModifyProducts";
 import { Products} from "./ModuleProductComp/Products";
+import { EditProducts} from "./ModuleProductComp/EditProducts";
+
 
 function ModuleProducts () {
     return (
@@ -13,8 +14,8 @@ function ModuleProducts () {
             <Switch>
                 <Route exact path="/Productos" component={Products}/>
                 <Route exact path="/Productos/CrearProductos" component={NewProducts}/>
-                <Route exact path="/Productos/ProductosActivos" component={ActiveProducts}/>
-                <Route exact path="/Productos/ModificarProductos" component={ModifyProducts}/>
+                <Route exact path="/Productos/ProductosActivos" component={ActiveProducts}/>  
+                <Route exact path="/Productos/EditarProductos/:id" component={EditProducts}/>       
                 <Route path="*" component={<h1>Error 404</h1>}/>
             </Switch>
         </BrowserRouter>

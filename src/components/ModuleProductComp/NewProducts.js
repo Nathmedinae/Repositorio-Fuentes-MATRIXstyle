@@ -10,7 +10,8 @@ function NewProducts () {
         event.preventDefault ();
         const formData = new FormData(form.current);
         const dataNewProducts = {
-            codigo: formData.get("codigo"),   
+            codigo: formData.get("codigo"),
+            nombre: formData.get("nombre"),  
             descripcion: formData.get("descripcion"), 
             color: formData.get("color"), 
             talla: formData.get("talla"), 
@@ -43,7 +44,7 @@ function NewProducts () {
                         
                         <label htmlFor="Descripcion">
                             <span>Descripción:</span>
-                            <input name='cescripcion'type="text" id="descripción" placeholder="Descripciòn de Producto" autocomplete="off" required />
+                            <input name='descripcion'type="text" id="descripción" placeholder="Descripciòn de Producto" autocomplete="off" required />
                         </label>
                         <label htmlFor="color">
                             <span>Color:</span>
