@@ -10,14 +10,14 @@ function DeleteUsers () {
     const [users, setUsers] = useState([])
 
     useEffect(() => {
+        const obtenerDatosUser = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + idUser)
+            const saveUsers = await data.json()
+            setUsers(saveUsers)
+        }
         obtenerDatosUser()
       }, []);
 
-    const obtenerDatosUser = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + idUser)
-        const saveUsers = await data.json()
-        setUsers(saveUsers)
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault();

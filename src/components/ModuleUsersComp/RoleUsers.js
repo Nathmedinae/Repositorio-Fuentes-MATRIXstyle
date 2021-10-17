@@ -18,18 +18,18 @@ function RoleUsers () {
     return (
         <Fragment>
             <main>
-                    <h2 class="subtitle_page">Roles registrados</h2>
+                    <h2 className="subtitle_page">Roles registrados</h2>
 
                     <section>
-                        <form class="form2">
+                        <form className="form2">
                             <span>Búsqueda por palabra clave:</span>
-                            <label for="searchRoles">
+                            <label>
                                 <input type="search" placeholder="Escribe una palabra clave" required autoComplete="off"/>
                             </label>
-                            <input class="submitButton" type="submit" value="Buscar"/>
+                            <input className="submitButton" type="submit" value="Buscar"/>
                         </form>
             
-                        <form class="form2">
+                        <form className="form2">
                             <span>Búsqueda por filtros:</span>
                             <label>
                                 <span>Permisos:</span>
@@ -46,12 +46,12 @@ function RoleUsers () {
                                     <option value="inactivo">Inactivo</option>
                                 </select>
                             </label>
-                            <input class="submitButton" type="submit" value="Buscar"/>
+                            <input className="submitButton" type="submit" value="Buscar"/>
                         </form>
                     </section>
 
-                    <tbody>
-                        <table>
+                    <table>
+                        <tbody>
                             <tr>
                                 <th>Tipo de rol</th>
                                 <th>Permisos del usuario</th>
@@ -59,17 +59,17 @@ function RoleUsers () {
                                 <th>Eliminar</th>
                             </tr>
 
-                            {roles.map((item, i) => (<tr>
-                                                    <td key={i}>{item.nombreRol}<br/></td>
-                                                    <td key={i}>{item.checkVentas == null ? "Módulo de ventas: INHABILITADO" : " Módulo de ventas: HABILITADO"}<br/>
+                            {roles.map((item, i) => (<tr key={i}>
+                                                    <td>{item.nombreRol}<br/></td>
+                                                    <td>{item.checkVentas == null ? "Módulo de ventas: INHABILITADO" : " Módulo de ventas: HABILITADO"}<br/>
                                                                 {item.checkProductos == null ? "Módulo de productos: INHABILITADO" : " Módulo de productos: HABILITADO"}<br/>
                                                                 {item.checkUsers == null ? "Módulo de usuarios: INHABILITADO" : " Módulo de usuarios: HABILITADO"}</td>
-                                                    <td key={i}><Link to={"/Usuarios/EditarRoles/" + item._id}>Editar</Link></td>
-                                                    <td key={i}><Link to={"/Usuarios/BorrarRoles/" + item._id}>Eliminar</Link></td>
+                                                    <td><Link to={"/Usuarios/EditarRoles/" + item._id}>Editar</Link></td>
+                                                    <td><Link to={"/Usuarios/BorrarRoles/" + item._id}>Eliminar</Link></td>
                                                 </tr>       
                         ))}
-                        </table>
-                    </tbody>
+                        </tbody>
+                    </table>
             </main>
         </Fragment>
     )

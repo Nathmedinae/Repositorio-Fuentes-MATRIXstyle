@@ -7,18 +7,27 @@ function EditUsers () {
     const location = useLocation()
     const idUser = location.pathname.split("/").pop()
 
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState([]);
+    const [roles, setRoles] = useState([]);
 
     useEffect(() => {
+        const obtenerDatosUser = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + idUser)
+            const saveUsers = await data.json()
+            setUsers(saveUsers)
+        }
+
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
+            const saveRoles = await data.json();
+            setRoles(saveRoles)
+        }
+        
         obtenerDatosUser()
         obtenerDatos()
       }, []);
 
-    const obtenerDatosUser = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + idUser)
-        const saveUsers = await data.json()
-        setUsers(saveUsers)
-    }
+
 
     const handleInputChange = (e) => {
         setUsers({[e.target.name]: e.target.value});
@@ -43,14 +52,6 @@ function EditUsers () {
         axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/update', dataEditUsers)
             .then(res => console.log(res.data), alert("Usuario actualizado con éxito"));
         window.location.assign("/Usuarios");
-    }
-
-    const [roles, setRoles] = useState([]);
-
-    const obtenerDatos = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
-        const saveRoles = await data.json();
-        setRoles(saveRoles)
     }
 
     return (

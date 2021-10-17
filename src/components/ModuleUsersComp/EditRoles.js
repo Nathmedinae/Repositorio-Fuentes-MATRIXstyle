@@ -1,23 +1,23 @@
 import axios from "axios";
-import React, {useRef, useState, useEffect} from "react";
+import React, {useRef, useState, useEffect, Fragment} from "react";
 import {useLocation } from 'react-router-dom';
 
 function EditRoles () {
 
-    const location = useLocation()
-    const idRole = location.pathname.split("/").pop()
+    const location = useLocation();
+    const idRole = location.pathname.split("/").pop();
 
     const [roles, setRoles] = useState([])
 
     useEffect(() => {
-        obtenerDatosRole()
+        const obtenerDatosRole = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/edit?id=' + idRole)
+            const saveRoles = await data.json()
+            setRoles(saveRoles);
+        };
+        obtenerDatosRole();
       }, []);
 
-    const obtenerDatosRole = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/edit?id=' + idRole)
-        const saveRoles = await data.json()
-        setRoles(saveRoles)
-    }
 
     const handleInputChange = (e) => {
         setRoles({[e.target.name]: e.target.value});
@@ -35,62 +35,64 @@ function EditRoles () {
             checkProductos: formData.get("checkProductos"),
             checkUsers: formData.get("checkUsers")
         }
-        console.log(dataEditRoles);
+
         axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/update', dataEditRoles)
             .then(res => console.log(res.data), alert("Rol actualizado con éxito"));
         window.location.assign("/Usuarios");
     }
 
     return (
-        <main>
-            <h2 className="subtitle_page">Actualización de roles</h2>
-            <p>Para editar el rol diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
-            
-            <form ref={form2} onSubmit={handleSubmit}>
-                <label>
-                    <span>Nombre del rol:</span>
-                    <input type="text" name="nombreRol"
-                            placeholder="Escribe el nuevo tipo de rol"
-                            autoComplete="off" required
-                            onChange={handleInputChange}
-                            value={roles.nombreRol}
-                    />
-                </label>
-
-                <div>
-                    <h3>Seleccione los módulos asociados al rol:</h3>
-
-                    <label className="labelCheck">
-                        <input className="inputCheck" type="checkbox"
-                                name="checkVentas"
+        <Fragment>
+            <main>
+                <h2 className="subtitle_page">Actualización de roles</h2>
+                <p>Para editar el rol diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
+                
+                <form ref={form2} onSubmit={handleSubmit}>
+                    <label>
+                        <span>Nombre del rol:</span>
+                        <input type="text" name="nombreRol"
+                                placeholder="Escribe el nuevo tipo de rol"
+                                required
                                 onChange={handleInputChange}
-                                value={roles.checkVentas}
-                        />
-                        <h4>Acceso al módulo de ventas</h4>
+                                value={roles.nombreRol}/>
                     </label>
 
-                    <label className="labelCheck">
-                        <input className="inputCheck" type="checkbox" 
-                                name="checkProductos"
-                                onChange={handleInputChange}
-                                value={roles.checkProductos}
-                        />
-                        <h4>Acceso al módulo de productos</h4>
-                    </label>
+                    <div>
+                        <h3>Seleccione los módulos asociados al rol:</h3>
 
-                    <label className="labelCheck">
-                        <input className="inputCheck" type="checkbox"
-                                name="checkUsers"
-                                onChange={handleInputChange}
-                                value={roles.checkUsers}
-                        />
-                        <h4>Acceso al módulo de usuarios</h4>
-                    </label>
-                </div>
+                        <label className="labelCheck">
+                            <input className="inputCheck" type="checkbox"
+                                    name="checkVentas"
+                                    onChange={handleInputChange}
+                                    defaultChecked={roles.checkVentas}
+                            />
+                            <h4>Acceso al módulo de ventas</h4>
+                        </label>
 
-                <input className="submitButton" type="submit" value="Actualizar rol"/>
-            </form>
-        </main>
+                        <label className="labelCheck">
+                            <input className="inputCheck" type="checkbox" 
+                                    name="checkProductos"
+                                    onChange={handleInputChange}
+                                    defaultChecked={roles.checkProductos}
+                            />
+                            <h4>Acceso al módulo de productos</h4>
+                        </label>
+
+                        <label className="labelCheck">
+                            <input className="inputCheck" type="checkbox"
+                                    name="checkUsers"
+                                    onChange={handleInputChange}
+                                    defaultChecked={roles.checkUsers}
+                            />
+                            <h4>Acceso al módulo de usuarios</h4>
+                        </label>
+                    </div>
+
+                    <input className="submitButton" type="submit" value="Actualizar rol"/>
+                </form>
+            </main>
+        </Fragment>
+
 
     )
 }

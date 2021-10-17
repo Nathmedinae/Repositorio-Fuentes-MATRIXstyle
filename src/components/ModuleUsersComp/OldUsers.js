@@ -67,15 +67,15 @@ function OldUsers () {
                             <th>Eliminar</th>
                         </tr>
                     
-                        {users.map((item, i) => (<tr>
-                                                <td key={i}>{item.dni}<br/></td>
-                                                <td key={i}>{item.name} {item.lastname}<br/></td>
-                                                <td key={i}>{item.email}</td>
-                                                <td key={i}>{item.perfil}</td>
-                                                <td key={i}>{item.username}</td>
-                                                <td key={i}>{item.password}</td>
-                                                <td key={i}><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
-                                                <td key={i}><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
+                        {users.map((item, i) => (<tr key={i}>
+                                                <td>{item.dni}<br/></td>
+                                                <td>{item.name} {item.lastname}<br/></td>
+                                                <td>{item.email}</td>
+                                                <td>{item.perfil}</td>
+                                                <td>{item.username}</td>
+                                                <td>{item.password}</td>
+                                                <td><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
+                                                <td><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
                                             </tr>       
                         ))}
                     </tbody>

@@ -10,14 +10,15 @@ function DeleteRoles () {
     const [roles, setRoles] = useState([]);
 
     useEffect(() => {
-        obtenerDatosRoles()
+        const obtenerDatosRoles = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/edit?id=' + idRole);
+            const saveRoles = await data.json();
+            setRoles(saveRoles)
+        }
+        obtenerDatosRoles();
       }, []);
 
-    const obtenerDatosRoles = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/edit?id=' + idRole);
-        const saveRoles = await data.json();
-        setRoles(saveRoles)
-    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
