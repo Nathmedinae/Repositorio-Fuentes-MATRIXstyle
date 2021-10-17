@@ -20,34 +20,36 @@ function ActiveProducts () {
         <main>
             <h2 className="subtitle_page">Productos Activos</h2>
             
-            <div/>
-                <tr>
-                    <th>Código de Producto</th>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Color</th>
-                    <th>Talla</th>
-                    <th>Categoria</th>
-                    <th>Precio</th>
-                    <th>Inventario</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-               
-                {products.map(item => (<tr>
-                                        <td key={item._id}>{item.codigo}<br/></td>
-                                        <td key={item._id}>{item.nombre}<br/></td>
-                                        <td key={item._id}>{item.descripcion}<br/></td>
-                                        <td key={item._id}>{item.color}</td>
-                                        <td key={item._id}>{item.talla}</td>
-                                        <td key={item._id}>{item.categoria}</td>
-                                        <td key={item._id}>{item.precio}</td>
-                                        <td key={item._id}>{item.inventario}</td>
-                                        <td key={item._id}><Link to={"/Productos/ModificarProductos" + item._id}>Modificar</Link></td>
-                                        <td key={item._id}><Link to={"/Productos/InactivarProductos/" + item._id}>Inactivar</Link></td>
-                                    </tr>       
-                ))}
-            <div/>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Código de Producto</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Color</th>
+                        <th>Talla</th>
+                        <th>Categoria</th>
+                        <th>Precio</th>
+                        <th>Inventario</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                
+                    {products.map(item => (<tr>
+                                            <td key={item._id}>{item.codigo}<br/></td>
+                                            <td key={item._id}>{item.nombre}<br/></td>
+                                            <td key={item._id}>{item.descripcion}<br/></td>
+                                            <td key={item._id}>{item.color}</td>
+                                            <td key={item._id}>{item.talla}</td>
+                                            <td key={item._id}>{item.categoria}</td>
+                                            <td key={item._id}>{item.precio}</td>
+                                            <td key={item._id}>{item.inventario}</td>
+                                            <td key={item._id}><Link to={"/Productos/EditarProductos/" + item._id}>Modificar</Link></td>
+                                            <td key={item._id}><Link to={"/Productos/InactivarProductos/" + item._id}>Inactivar</Link></td>
+                                        </tr>       
+                    ))}
+                </tbody>
+            </table>
         </main>
 
         </Fragment>
