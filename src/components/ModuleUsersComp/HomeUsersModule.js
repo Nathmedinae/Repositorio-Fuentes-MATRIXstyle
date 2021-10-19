@@ -1,13 +1,14 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Link} from "react-router-dom";
 
 function HomeUsersModule () {
+
     return (
         <main>
             <section>
                 <nav>
                     <ul>
-                        <li><NavLink exact to="/Usuarios">► Inicio</NavLink></li>
+                        <li><NavLink exact to="/MenuPrincipal">► Inicio</NavLink></li>
                         <li><NavLink exact to="/Usuarios/NuevosUsuarios">► Nuevos usuarios</NavLink></li>
                         <li><NavLink exact to="/Usuarios/UsuariosRegistrados">► Usuarios registrados</NavLink></li>
                         <li><NavLink exact to="/Usuarios/NuevosRoles">► Nuevos roles</NavLink></li>

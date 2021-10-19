@@ -10,7 +10,6 @@ function HomeProductModule () {
                         <li><NavLink exact to="/Productos">► Inicio</NavLink></li>
                         <li><NavLink exact to="/Productos/ProductosActivos">► Productos Activos</NavLink></li>
                         <li><NavLink exact to="/Productos/CrearProductos">► Crear Productos</NavLink></li>
-                        <li><NavLink exact to="/Productos/ModificarProductos/:id">► Actualizar Productos</NavLink></li>
                         <li><NavLink id="exit" className="active" exact to="/Productos">Salida</NavLink></li>
                     </ul>
                 </nav>
