@@ -17,7 +17,8 @@ function InitialSesion () {
 
     return (
         <Fragment>
-            {/* <main>
+        {/*
+            <main>
                 <br/><br/>
                 <GoogleLogin
                     clientId="85466486914-0e9mlaklko1tl73o53bpaqkq20bbeoj3.apps.googleusercontent.com"
@@ -26,9 +27,9 @@ function InitialSesion () {
                     onFailure={responsableFailGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
+            </main>*/}
 
-            </main>
-            <main> */}
+            <main> 
                 <section>
                     <h2 className="subtitle_page">Inicio de sesión</h2>
                     <p>Ingrese sus datos para iniciar sesión en el módulo de gestión de usuarios:</p>

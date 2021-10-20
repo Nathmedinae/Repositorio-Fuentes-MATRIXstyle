@@ -126,7 +126,7 @@ function EditProducts () {
                             />
                     </label> 
             
-                    <input  type="submit" value="Actualizar Producto" />
+                    <input  type="submit" value="Editar Producto" />
                 </form>
             </section>    
         </main>
