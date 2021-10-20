@@ -147,6 +147,17 @@ select {
     border-radius: 5px; 
     }
 
+.buttonV {
+    display: inline-block;
+    background-color: rgb(248, 248, 248); /* Green */
+    color: black;
+    text-align: center;
+    width: 150px;
+    height: 25px;
+    border-radius: 5px;
+    margin: 10px;
+    }
+
 .submitButton:hover {
     background-color:#d7d5d8;
 
@@ -279,6 +290,10 @@ td {
     padding: 8px;
   }
 
+.wrap {
+    white-space: pre-wrap;
+}
+
   .table_td_img {
       width: 50px;
       height: 50px;
@@ -311,4 +326,12 @@ td {
 }
 .contenedorSeccion:hover{
     box-shadow: 2px 2px rgb(187, 204, 250);
+}
+
+.g-signin{
+    position: relative;
+    justify-content:center;
+    width: 33%;
+    margin-top: 50px;
+    margin-left: 33%;
 }

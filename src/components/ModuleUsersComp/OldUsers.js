@@ -1,99 +1,80 @@
-import React from "react";
-import editIcon from "../../resources/edit_icon.png";
-import trashIcon from "../../resources/trash_icon50px.png";
+import React, {useState, useEffect, Fragment} from "react";
+import { Link } from 'react-router-dom';
 
 function OldUsers () {
-    return (
-        <main>
-            <h2 id="regUsers"className="subtitle_page">Usuarios registrados</h2>
-            <form action="" className="form2">
-                <span>Búsqueda por palabra clave:</span>
-                <label for="">
-                    <input type="search" id ="searchUsers" placeholder="Escribe una palabra clave" autocomplete="off"/>
-                </label>
-                <input className="submitButton" type="submit" value="Buscar"/>
-            </form>
 
-            <form action="" className="form2">
-                <span>Búsqueda por filtros:</span>
-                <label for="">
-                    <span>Rol:</span>
-                    <select name="rol" id="rol" autocomplete="off" required>
-                        <option value="Coordinador de ventas">Operario</option>
-                        <option value="Administrador">Vendedor</option>
-                        <option value="Ejecutivo de ventas">Ejecutivo</option>
-                        <option value="Coordinador de ventas">Gerente comercial</option>
-                        <option value="Coordinador de ventas">Director</option>
-                        <option value="Analista de ventas">Administrador</option>
-                    </select>
+    const [users, setUsers] = useState([]);
+    const [searchUser, setSearchUser] = useState([]);
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/get');
+            const saveUsers = await data.json();
+            setUsers(saveUsers)
+        }
+        obtenerDatos()
+      }, []);
+
+    const handleSearch = e => {
+        e.preventDefault();
+        const handle = e.target.value.toLowerCase();
+        setSearchUser(handle);
+        console.log(searchUser);
+    };
+
+    const filterUser = users.filter( user => {
+        return JSON.stringify(user).toLowerCase().includes(searchUser)
+    })
+
+    return (
+        <Fragment>
+
+
+            <main>
+                <h2 className="subtitle_page">Usuarios registrados</h2>
+
+                <label>
+                    <p>Escriba en el campo para hacer la búsqueda</p>
+                    <input type="text"
+                            name="searchUsers"
+                            placeholder="Escribe una palabra clave"
+                            onChange={handleSearch}
+                            value={searchUser}
+                    />
                 </label>
-                <label for="">
-                    <span>Estado:</span>
-                    <select name="perfil" id="perfil" autocomplete="off" required>
-                        <option value="activo">Activo</option>
-                        <option value="inactivo">Inactivo</option>
-                    </select>
-                </label>
-                <input className="submitButton" type="submit" value="Buscar"/>
-            </form>
-            <h3>Lista de usuarios registrados</h3>
-            <table>
-                <tr>
-                    <th>Nombres y apellidos</th>
-                    <th>Nombre de usuario</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Estado</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
-                </tr>
-                <tr>
-                    <td>Luz Helena Porras</td>
-                    <td>luzhporras</td>
-                    <td>luzhporras@matrixstyle.com</td>
-                    <td>Director</td>
-                    <td>Activo</td>
-                    <td className="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                    <td className="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                </tr>
-                <tr>
-                    <td>Nathalia Medina</td>
-                    <td>natahaliamedina</td>
-                    <td>natahaliamedina@matrixstyle.com</td>
-                    <td>Gerente comercial</td>
-                    <td>Activo</td>
-                    <td className="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                    <td className="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                </tr>
-                <tr>
-                    <td>John Edisson Merchán López</td>
-                    <td>johnemerchan</td>
-                    <td>johnemerchan@matrixstyle.com</td>
-                    <td>Ejecutivo</td>
-                    <td>Activo</td>
-                    <td className="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                    <td className="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                </tr>
-                <tr>
-                    <td>Juan Sebastián Gaviria Medina</td>
-                    <td>juansgaviria</td>
-                    <td>juansgaviria@matrixstyle.com</td>
-                    <td>Vendedor</td>
-                    <td>Activo</td>
-                    <td className="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                    <td className="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                </tr>
-                <tr>
-                    <td>Alveiro Javier Bueno Aguirre</td>
-                    <td>alveirojbueno</td>
-                    <td>alveirojbueno@matrixstyle.com</td>
-                    <td>Operario</td>
-                    <td>Activo</td>
-                    <td className="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                    <td className="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                </tr>
-            </table>
-        </main>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Documento de identidad</th>
+                            <th>Nombres y apellidos</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Nombre de usuario</th>
+                            <th>Password</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    
+                        {filterUser.map((item, i) => (<tr key={i}>
+                                                <td>{item.dni}<br/></td>
+                                                <td>{item.name} {item.lastname}<br/></td>
+                                                <td>{item.email}</td>
+                                                <td>{item.perfil}</td>
+                                                <td>{item.username}</td>
+                                                <td>{item.password}</td>
+                                                <td><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
+                                                <td><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
+                                            </tr>       
+                        ))}
+                    </tbody>
+                </table>
+            </main>
+
+
+
+        </Fragment>
+
     )
 };
 

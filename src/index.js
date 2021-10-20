@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import './index.css';
+import ReactDOM, {Redirect} from 'react-dom';
 import './style.css';
 import App from './App';
 

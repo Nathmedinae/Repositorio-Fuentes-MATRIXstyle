@@ -1,87 +1,68 @@
-import React from "react";
-import editIcon from "../../resources/edit_icon.png";
-import trashIcon from "../../resources/trash_icon50px.png";
+import React, {useState, useEffect, Fragment} from "react";
+import { Link } from 'react-router-dom';
 
 function RoleUsers () {
+
+    const [roles, setRoles] = useState([]);
+    // const [searchRoles, setSearchRoles] = useState([]);
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
+            const saveRoles = await data.json();
+            setRoles(saveRoles)
+        }
+        obtenerDatos()
+      }, []);
+
+    // const handleSearch = e => {
+    //     e.preventDefault();
+    //     const handle = e.target.value.toLowerCase();
+    //     setSearchRoles(handle);
+    //     console.log(searchRoles);
+    // };
+
+    // const filterRoles = roles.filter( user => {
+    //     return JSON.stringify(roles).toLowerCase().includes(searchRoles)
+    // })
+
     return (
-        <main>
-                <h2 class="subtitle_page" id="regRoles">Roles registrados</h2>
+        <Fragment>
+            <main>
+                    <h2 className="subtitle_page">Roles registrados</h2>
 
-                <section>
-                    <form action="" class="form2">
-                        <span>Búsqueda por palabra clave:</span>
-                        <label for="searchRoles">
-                            <input type="search" id ="searchRoles" placeholder="Escribe una palabra clave" autocomplete="off"/>
-                        </label>
-                        <input class="submitButton" type="submit" value="Buscar"/>
-                    </form>
-        
-                    <form action="" class="form2">
-                        <span>Búsqueda por filtros:</span>
-                        <label for="">
-                            <span>Permisos:</span>
-                            <select name="rol" id="rol" autocomplete="off" required>
-                                <option value="modVentas">Módulo de ventas</option>
-                                <option value="modProductos">Módulo de productos</option>
-                                <option value="modUsers">Módulo de usuarios </option>
-                            </select>
-                        </label>
-                        <label for="">
-                            <span>Estado:</span>
-                            <select name="perfil" id="perfil" autocomplete="off" required>
-                                <option value="activo">Activo</option>
-                                <option value="inactivo">Inactivo</option>
-                            </select>
-                        </label>
-                        <input class="submitButton" type="submit" value="Buscar"/>
-                    </form>
-                </section>
+                    {/* <label>
+                        <p>Escriba en el campo para hacer la búsqueda</p>
+                        <input type="search"
+                                name="searchRoles"
+                                placeholder="Escribe una palabra clave"
+                                onChange={handleSearch}
+                                value={searchRoles}
+                        />
+                    </label> */}
 
-                <table>
-                    <tr>
-                        <th>Tipo de rol</th>
-                        <th>Permisos del usuario</th>
-                        <th>Estado</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                    <tr>
-                        <td>Director</td>
-                        <td>Módulo de ventas<br/>Módulo de productos<br/>Módulo de usuarios</td>
-                        <td>Activo</td>
-                        <td class="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                        <td class="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                    </tr>
-                    <tr>
-                        <td>Gerente comercial</td>
-                        <td>Módulo de ventas<br/>Módulo de productos<br/>Módulo de usuarios</td>
-                        <td>Activo</td>
-                        <td class="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                        <td class="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                    </tr>
-                    <tr>
-                        <td>Ejecutivo</td>
-                        <td>Módulo de ventas<br/>Módulo de productos</td>
-                        <td>Activo</td>
-                        <td class="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                        <td class="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                    </tr>
-                    <tr>
-                        <td>Vendedor</td>
-                        <td>Módulo de ventas</td>
-                        <td>Activo</td>
-                        <td class="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                        <td class="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                    </tr>
-                    <tr>
-                        <td>Operario</td>
-                        <td>Módulo de productos</td>
-                        <td>Inactivo</td>
-                        <td class="table_td_img"><img src={editIcon} alt="Editar"/></td>
-                        <td class="table_td_img"><img src={trashIcon} alt="Eliminar"/></td>
-                    </tr>
-                </table>
-        </main>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Tipo de rol</th>
+                                <th>Permisos del usuario</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+
+                            {roles.map((item, i) => (<tr key={i}>
+                                                    <td>{item.nombreRol}<br/></td>
+                                                    <td>{item.checkVentas == null ? "Módulo de ventas: INHABILITADO" : " Módulo de ventas: HABILITADO"}<br/>
+                                                                {item.checkProductos == null ? "Módulo de productos: INHABILITADO" : " Módulo de productos: HABILITADO"}<br/>
+                                                                {item.checkUsers == null ? "Módulo de usuarios: INHABILITADO" : " Módulo de usuarios: HABILITADO"}</td>
+                                                    <td><Link to={"/Usuarios/EditarRoles/" + item._id}>Editar</Link></td>
+                                                    <td><Link to={"/Usuarios/BorrarRoles/" + item._id}>Eliminar</Link></td>
+                                                </tr>       
+                        ))}
+                        </tbody>
+                    </table>
+            </main>
+        </Fragment>
     )
 };
 

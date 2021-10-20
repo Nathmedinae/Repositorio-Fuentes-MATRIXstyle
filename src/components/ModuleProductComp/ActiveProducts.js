@@ -1,49 +1,59 @@
-import React from "react";
-
+import React, {useState, useEffect, Fragment} from "react";
+import { Link } from 'react-router-dom';
 
 function ActiveProducts () {
-    return (
-        <main>
-            <section>
-                
-            <figure>
-                <h2 class="subtitle_page">Lista Productos Activos</h2>
-               
-                <table>
-                    <caption>Activos</caption>
-                    <tr>
-                       <th>Estado</th>
-                       <th>Imagen</th>
-                       <th>Producto</th>
-                       <th>SKU</th>
-                       <th>Inventario</th>
-                    </tr>
-                    <tr>
-                        <td>Activo</td>
-                        <td>Imagen</td>
-                        <td>Camiseta Blanca</td>
-                        <td>10000</td>
-                        <td>100</td>
-                     </tr>
-                     <tr>
-                        <td>Activo</td>
-                        <td>Imagen</td>
-                        <td>Camiseta Negra</td>
-                        <td>20000</td>
-                        <td>0</td>
-                     </tr>
-                     <tr>
-                        <td>Activo</td>
-                        <td>Imagen</td>
-                        <td>Camiseta Gris</td>
-                        <td>10000</td>
-                        <td>100</td>
-                     </tr>
-                </table>
 
-            </figure>
-        </section>
-        </main>                     
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getData()
+      }, []);
+
+    const getData = async () => {
+        const data = await fetch('https://webhooks.mongodb-realm.com/api/client/v2.0/app/matrix-pfeao/service/Matrix/incoming_webhook/Matrix');
+        const saveProducts = await data.json();
+        setProducts(saveProducts)
+    }
+
+    return (
+        <Fragment>
+        <main>
+            <h2 className="subtitle_page">Productos Activos</h2>
+            
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Código de Producto</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Color</th>
+                        <th>Talla</th>
+                        <th>Categoria</th>
+                        <th>Precio</th>
+                        <th>Inventario</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                
+                    {products.map(item => (<tr>
+                                            <td key={item._id}>{item.codigo}<br/></td>
+                                            <td key={item._id}>{item.nombre}<br/></td>
+                                            <td key={item._id}>{item.descripcion}<br/></td>
+                                            <td key={item._id}>{item.color}</td>
+                                            <td key={item._id}>{item.talla}</td>
+                                            <td key={item._id}>{item.categoria}</td>
+                                            <td key={item._id}>{item.precio}</td>
+                                            <td key={item._id}>{item.inventario}</td>
+                                            <td key={item._id}><Link to={"/Productos/EditarProductos/" + item._id}>Editar</Link></td>
+                                            <td key={item._id}><Link to={"/Productos/EliminarProductos/" + item._id}>Borrar</Link></td>
+                                        </tr>       
+                    ))}
+                </tbody>
+            </table>
+        </main>
+
+        </Fragment>
+
     )
 };
 

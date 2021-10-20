@@ -1,14 +1,45 @@
 import axios from "axios";
 import React, {useRef, useState, useEffect} from "react";
+import {useLocation } from 'react-router-dom';
 
-function NewUsers () {
+function EditUsers () {
+
+    const location = useLocation()
+    const idUser = location.pathname.split("/").pop()
+
+    const [users, setUsers] = useState([]);
+    const [roles, setRoles] = useState([]);
+
+    useEffect(() => {
+        const obtenerDatosUser = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/edit?id=' + idUser)
+            const saveUsers = await data.json()
+            setUsers(saveUsers)
+        }
+
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
+            const saveRoles = await data.json();
+            setRoles(saveRoles)
+        }
+        
+        obtenerDatosUser()
+        obtenerDatos()
+      }, []);
+
+
+
+    const handleInputChange = (e) => {
+        setUsers({[e.target.name]: e.target.value});
+    }
 
     const form = useRef(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(form.current);
-        const dataNewUsers = {
+        const dataEditUsers = {
+            user_id: idUser,
             dni: formData.get("dni"),
             name: formData.get("name"),
             lastname: formData.get("lastname"),
@@ -17,21 +48,10 @@ function NewUsers () {
             username: formData.get('username'),
             password: formData.get('password')
         }
-        console.log(dataNewUsers);
-        axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
-            .then(res => console.log(res.data), alert("Usuario creado con éxito"));
-    }
-
-    const [roles, setRoles] = useState([]);
-
-    useEffect(() => {
-        obtenerDatos()
-      }, []);
-
-    const obtenerDatos = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
-        const saveRoles = await data.json();
-        setRoles(saveRoles)
+        console.log(dataEditUsers);
+        axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/update', dataEditUsers)
+            .then(res => console.log(res.data), alert("Usuario actualizado con éxito"));
+        window.location.assign("/Usuarios");
     }
 
     return (
@@ -47,68 +67,74 @@ function NewUsers () {
                                 placeholder="Escribe el número de documento"
                                 required
                                 name="dni"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.dni}
                                 />
                     </label>
                     <label>
                         <span>Nombres:</span>
-                        <input type="text"
+                        <input type="text" id ="nombre"
                                 placeholder="Escribe los nombres"
                                 required
                                 name="name"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.name}
                                 />
                     </label>
                     <label>
                         <span>Apellidos:</span>
-                        <input type="text"
+                        <input type="text" id ="apellido"
                                 placeholder="Escribe los apellidos"
                                 required
                                 name="lastname"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.lastname}
                                 />
                     </label>
 
                     <label>
                         <span>Correo:</span>
-                        <input type="email"
+                        <input type="email" id ="email"
                                 placeholder="Escribe el correo"
                                 required
                                 name="email"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.email}
                                 />
                     </label>
 
                     <label>
                         <span>Perfil:</span>
-                        <select name="perfil" required name="perfil">
+                        <select name="perfil" required name="perfil" onChange={handleInputChange} value={users.perfil}>
                             {roles.map(item => (<option key={item._id}>{item.nombreRol}</option>))}
                         </select>
                     </label>
 
                     <label>
                         <span>Nombre de usuario:</span>
-                        <input type="text"
+                        <input type="text" id ="username"
                                 placeholder="Escriba el nombre de usuario"
                                 required
                                 name="username"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.username}
                         />
                     </label>
                     <label>
                         <span>Password:</span>
-                        <input type="password"
+                        <input type="password" id ="password"
                                 placeholder="Asigne un password"
                                 required
                                 name="password"
-                                // onChange={handleInputChange}
+                                onChange={handleInputChange}
+                                value={users.password}
                         />
                     </label>
-                    <input type="submit" value="Crear usuario"/>
+                    <input type="submit" value="Actualizar usuario"/>
                 </form>
             </section>
         </main>
     )
 };
 
-export {NewUsers};
+export {EditUsers};
