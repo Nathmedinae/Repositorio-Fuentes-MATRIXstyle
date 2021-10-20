@@ -4,51 +4,42 @@ import { Link } from 'react-router-dom';
 function RoleUsers () {
 
     const [roles, setRoles] = useState([]);
+    // const [searchRoles, setSearchRoles] = useState([]);
 
     useEffect(() => {
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
+            const saveRoles = await data.json();
+            setRoles(saveRoles)
+        }
         obtenerDatos()
       }, []);
 
-    const obtenerDatos = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixroles-rqcbf/service/matrixRoles/incoming_webhook/get');
-        const saveRoles = await data.json();
-        setRoles(saveRoles)
-    }
+    // const handleSearch = e => {
+    //     e.preventDefault();
+    //     const handle = e.target.value.toLowerCase();
+    //     setSearchRoles(handle);
+    //     console.log(searchRoles);
+    // };
+
+    // const filterRoles = roles.filter( user => {
+    //     return JSON.stringify(roles).toLowerCase().includes(searchRoles)
+    // })
 
     return (
         <Fragment>
             <main>
                     <h2 className="subtitle_page">Roles registrados</h2>
 
-                    <section>
-                        <form className="form2">
-                            <span>Búsqueda por palabra clave:</span>
-                            <label>
-                                <input type="search" placeholder="Escribe una palabra clave" required autoComplete="off"/>
-                            </label>
-                            <input className="submitButton" type="submit" value="Buscar"/>
-                        </form>
-            
-                        <form className="form2">
-                            <span>Búsqueda por filtros:</span>
-                            <label>
-                                <span>Permisos:</span>
-                                <select name="rol" autoComplete="off" required>
-                                    <option value="modVentas">Módulo de ventas</option>
-                                    <option value="modProductos">Módulo de productos</option>
-                                    <option value="modUsers">Módulo de usuarios </option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Estado:</span>
-                                <select name="perfil" autoComplete="off" required>
-                                    <option value="activo">Activo</option>
-                                    <option value="inactivo">Inactivo</option>
-                                </select>
-                            </label>
-                            <input className="submitButton" type="submit" value="Buscar"/>
-                        </form>
-                    </section>
+                    {/* <label>
+                        <p>Escriba en el campo para hacer la búsqueda</p>
+                        <input type="search"
+                                name="searchRoles"
+                                placeholder="Escribe una palabra clave"
+                                onChange={handleSearch}
+                                value={searchRoles}
+                        />
+                    </label> */}
 
                     <table>
                         <tbody>

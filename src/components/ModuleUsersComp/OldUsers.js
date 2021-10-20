@@ -1,59 +1,48 @@
 import React, {useState, useEffect, Fragment} from "react";
 import { Link } from 'react-router-dom';
-// import editIcon from "../../resources/edit_icon.png";
-// import trashIcon from "../../resources/trash_icon50px.png";
 
 function OldUsers () {
 
     const [users, setUsers] = useState([]);
+    const [searchUser, setSearchUser] = useState([]);
 
     useEffect(() => {
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/get');
+            const saveUsers = await data.json();
+            setUsers(saveUsers)
+        }
         obtenerDatos()
       }, []);
 
-    const obtenerDatos = async () => {
-        const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/get');
-        const saveUsers = await data.json();
-        setUsers(saveUsers)
-    }
+    const handleSearch = e => {
+        e.preventDefault();
+        const handle = e.target.value.toLowerCase();
+        setSearchUser(handle);
+        console.log(searchUser);
+    };
+
+    const filterUser = users.filter( user => {
+        return JSON.stringify(user).toLowerCase().includes(searchUser)
+    })
 
     return (
         <Fragment>
-            <h2 className="subtitle_page">Usuarios registrados</h2>
 
-
-            {/* <form action="" className="form2">
-                <span>Búsqueda por palabra clave:</span>
-                <label for="">
-                    <input type="search" id ="searchUsers" placeholder="Escribe una palabra clave"/>
-                </label>
-                <input className="submitButton" type="submit" value="Buscar"/>
-            </form> */}
-
-            {/* <form action="" className="form2">
-                <span>Búsqueda por filtros:</span>
-                <label for="">
-                    <span>Rol:</span>
-                    <select name="rol" id="rol" autocomplete="off" required>
-                        <option value="Coordinador de ventas">Operario</option>
-                        <option value="Administrador">Vendedor</option>
-                        <option value="Ejecutivo de ventas">Ejecutivo</option>
-                        <option value="Coordinador de ventas">Gerente comercial</option>
-                        <option value="Coordinador de ventas">Director</option>
-                        <option value="Analista de ventas">Administrador</option>
-                    </select>
-                </label>
-                <label for="">
-                    <span>Estado:</span>
-                    <select name="perfil" id="perfil" required>
-                        <option value="activo">Activo</option>
-                        <option value="inactivo">Inactivo</option>
-                    </select>
-                </label>
-                <input className="submitButton" type="submit" value="Buscar"/>
-            </form> */}
 
             <main>
+                <h2 className="subtitle_page">Usuarios registrados</h2>
+
+                <label>
+                    <p>Escriba en el campo para hacer la búsqueda</p>
+                    <input type="text"
+                            name="searchUsers"
+                            placeholder="Escribe una palabra clave"
+                            onChange={handleSearch}
+                            value={searchUser}
+                    />
+                </label>
+
                 <table>
                     <tbody>
                         <tr>
@@ -67,7 +56,7 @@ function OldUsers () {
                             <th>Eliminar</th>
                         </tr>
                     
-                        {users.map((item, i) => (<tr key={i}>
+                        {filterUser.map((item, i) => (<tr key={i}>
                                                 <td>{item.dni}<br/></td>
                                                 <td>{item.name} {item.lastname}<br/></td>
                                                 <td>{item.email}</td>

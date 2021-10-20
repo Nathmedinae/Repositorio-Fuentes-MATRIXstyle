@@ -17,18 +17,22 @@ function InitialSesion () {
 
     return (
         <Fragment>
-            {/* <main>
+            <main> 
                 <br/><br/>
                 <GoogleLogin
                     clientId="85466486914-0e9mlaklko1tl73o53bpaqkq20bbeoj3.apps.googleusercontent.com"
-                    buttonText="Iniciar sesión"
+                    buttonText="Iniciar sesión con Google Account"
                     onSucess={responsableGoogle}
                     onFailure={responsableFailGoogle}
                     cookiePolicy={'single_host_origin'}
+                    isSignedIn={true}
+                    uxMode="redirect"
+                    redirectUri="http://localhost:3000/MenuPrincipal"
+                    className="g-signin"
                 />
-
             </main>
-            <main> */}
+
+            {/* <main>
                 <section>
                     <h2 className="subtitle_page">Inicio de sesión</h2>
                     <p>Ingrese sus datos para iniciar sesión en el módulo de gestión de usuarios:</p>
@@ -45,7 +49,7 @@ function InitialSesion () {
                             <input class="submitButton" type="submit" value="Ingresar"/>
                     </form>
                 </section>
-            </main>
+            </main> */}
 
         </Fragment>
 

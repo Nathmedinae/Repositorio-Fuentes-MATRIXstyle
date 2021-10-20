@@ -327,3 +327,11 @@ td {
 .contenedorSeccion:hover{
     box-shadow: 2px 2px rgb(187, 204, 250);
 }
+
+.g-signin{
+    position: relative;
+    justify-content:center;
+    width: 33%;
+    margin-top: 50px;
+    margin-left: 33%;
+}
