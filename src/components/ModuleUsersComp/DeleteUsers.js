@@ -40,11 +40,13 @@ function DeleteUsers () {
                 </tr>
 
                 <tr>
+
                     <td>{users.dni}</td>
                     <td>{users.name} {users.lastname}</td>
                     <td>{users.email}</td>
                     <td>{users.perfil}</td>
                     <td>{users.username}</td>
+                                       
                 </tr>
             <div/>
 

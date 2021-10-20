@@ -44,8 +44,8 @@ function ActiveProducts () {
                                             <td key={item._id}>{item.categoria}</td>
                                             <td key={item._id}>{item.precio}</td>
                                             <td key={item._id}>{item.inventario}</td>
-                                            <td key={item._id}><Link to={"/Productos/EditarProductos/" + item._id}>Modificar</Link></td>
-                                            <td key={item._id}><Link to={"/Productos/InactivarProductos/" + item._id}>Inactivar</Link></td>
+                                            <td key={item._id}><Link to={"/Productos/EditarProductos/" + item._id}>Editar</Link></td>
+                                            <td key={item._id}><Link to={"/Productos/EliminarProductos/" + item._id}>Borrar</Link></td>
                                         </tr>       
                     ))}
                 </tbody>
