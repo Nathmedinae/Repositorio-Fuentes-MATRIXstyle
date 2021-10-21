@@ -20,6 +20,7 @@ function NewUsers () {
         console.log(dataNewUsers);
         axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixapp-yjwwm/service/matrix/incoming_webhook/add', dataNewUsers)
             .then(res => console.log(res.data), alert("Usuario creado con éxito"));
+        window.location.assign("/Usuarios");
     }
 
     const [roles, setRoles] = useState([]);

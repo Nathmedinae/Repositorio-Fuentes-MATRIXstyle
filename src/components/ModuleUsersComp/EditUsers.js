@@ -57,7 +57,7 @@ function EditUsers () {
     return (
         <main>
             <section>
-                <h2 className="subtitle_page">Creación de nuevos usuarios</h2>
+                <h2 className="subtitle_page">Edición de nuevos usuarios</h2>
                 <p>Para crear un nuevo usuario diligencie el siguiente formulario, asegúrese de llenar todos los campos.</p>
                 
                 <form ref={form} onSubmit={handleSubmit}>

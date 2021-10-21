@@ -1,11 +1,15 @@
 import React from "react";
-import {NavLink, Link, Redirect} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 function HomeUsersModule () {
 
     const menuP = () => {
-        return <Redirect to="/MenuPrincipal" />
-    } 
+        return window.location="/MenuPrincipal"
+    }
+
+    const home = () => {
+        return window.location="/"
+    }
 
 
     return (
@@ -13,12 +17,13 @@ function HomeUsersModule () {
             <section>
                 <nav>
                     <ul>
-                        <li><Link exact to="/MenuPrincipal">► Inicio</Link></li>
+                        <li><button className="buttonMenu" onClick={menuP}> Inicio </button></li>
                         <li><NavLink exact to="/Usuarios/NuevosUsuarios">► Nuevos usuarios</NavLink></li>
                         <li><NavLink exact to="/Usuarios/UsuariosRegistrados">► Usuarios registrados</NavLink></li>
                         <li><NavLink exact to="/Usuarios/NuevosRoles">► Nuevos roles</NavLink></li>
                         <li><NavLink exact to="/Usuarios/RolesRegistrados">► Roles registrados</NavLink></li>
-                        <li><Link id="exit" className="active" exact to="/">Salida</Link></li>
+                        <li><button className="buttonMenu" onClick={home}> Salida </button></li>
+
                     </ul>
                 </nav>
             </section>

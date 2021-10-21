@@ -160,8 +160,20 @@ select {
 
 .submitButton:hover {
     background-color:#d7d5d8;
-
 }
+
+.buttonMenu {
+    position: relative;
+    float:left;
+    background-color:black; /* Green */
+    color: white;
+    text-align:center;
+    width: 12rem;
+    height: 2rem;
+    border-radius: 1rem;
+    margin: 10px;
+    bottom: unset;
+    }
 
 section nav {
     margin-top: 1rem;
