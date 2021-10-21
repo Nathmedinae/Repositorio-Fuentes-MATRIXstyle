@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 function ActiveProducts () {
 
     const [products, setProducts] = useState([]);
+    const [searchProduct, setSearchProduct] = useState([]);
 
     useEffect(() => {
         getData()
@@ -15,9 +16,30 @@ function ActiveProducts () {
         setProducts(saveProducts)
     }
 
+    const handleSearch = e => {
+        e.preventDefault();
+        const handle = e.target.value.toLowerCase();
+        setSearchProduct(handle);
+        console.log(searchProduct);
+    };
+
+    const filterProduct = products.filter( product => {
+        return JSON.stringify(product).toLowerCase().includes(searchProduct)
+    })
+
     return (
         <Fragment>
         <main>
+
+        <label>
+            <p>Búscar</p>
+                    <input type="text"
+                    codigo="searchProducts"
+                    placeholder="Escribe el código del producto"
+                    onChange={handleSearch}
+                    value={searchProduct}
+                    />
+        </label>
             <h2 className="subtitle_page">Productos Activos</h2>
             
             <table>
@@ -35,7 +57,7 @@ function ActiveProducts () {
                         <th>Eliminar</th>
                     </tr>
                 
-                    {products.map(item => (<tr>
+                    {filterProduct.map((item, i) => (<tr key={i}>
                                             <td key={item._id}>{item.codigo}<br/></td>
                                             <td key={item._id}>{item.nombre}<br/></td>
                                             <td key={item._id}>{item.descripcion}<br/></td>
