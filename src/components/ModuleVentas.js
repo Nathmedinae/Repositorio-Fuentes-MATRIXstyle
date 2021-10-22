@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import { RegistroVentas } from "./ModuleVentasComp/RegistroVentas";
 import { HomeVentasModule } from "./ModuleVentasComp/HomeVentasModule";
-import Cuenta from "./ModuleVentasComp/Cuenta";
+import {Cuenta} from "./ModuleVentasComp/Cuenta";
 
 function ModuleVentas() {
     return (

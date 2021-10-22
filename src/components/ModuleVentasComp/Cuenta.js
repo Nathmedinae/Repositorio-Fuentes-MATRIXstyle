@@ -1,61 +1,81 @@
-import React from 'react'
+import React, {useState, useEffect, Fragment} from "react";
+import { Link } from 'react-router-dom';
 
 const Cuenta = () => {
-    return (
-        <main>
-        <section class="contenedorSeccion">
-        <p><span class="titulosSecciones">Cuenta</span></p>
-        <form action="">
-            
-            <p><label for="Indicador de Venta">
-                <span>Venta N°:</span>
-                <label for ="Traer consecutivo"></label>
-            </label></p>
 
-            <p><label for="Fecha">
-                <span>Fecha registrada:</span>
-                <label for ="Traer de Registro"></label>
-            </label></p>
-            
-            <label for="Productos en la Cuenta">
+    const [invoices, setinvoices] = useState([]);
+    const [searchInvoice, setSearchInvoice] = useState([]);
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            const data = await fetch('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixfacturas-ylvur/service/matrixFacturas/incoming_webhook/get');
+            const saveInvoices = await data.json();
+            setinvoices(saveInvoices)
+        }
+        obtenerDatos()
+      }, []);
+
+    const handleSearch = e => {
+        e.preventDefault();
+        const handle = e.target.value.toLowerCase();
+        setSearchInvoice(handle);
+        console.log(searchInvoice);
+    };
+
+    const filterInvoice = invoices.filter( invoice => {
+        return JSON.stringify(invoice).toLowerCase().includes(searchInvoice)
+    })
+
+    return (
+        <Fragment>
+            <main>
+                <h2 className="subtitle_page">Registro de ventas</h2>
+
+                <label>
+                    <p>Escriba en el campo para hacer la búsqueda</p>
+                    <input type="text"
+                            name="searchInvoices"
+                            placeholder="Escribe una palabra clave"
+                            onChange={handleSearch}
+                            value={searchInvoice}
+                    />
+                </label>
+
                 <table>
                     <tbody>
                         <tr>
-                            <th>CÓDIGO</th>
-                            <th>NOMBRE</th>
-                            <th>VALOR UNITARIO</th>
-                            <th>CANTIDAD</th>
-                            <th>SUBTOTAL PRODUCTO</th>
+                            <th>Factura No.</th>
+                            <th>Nombre del cliente</th>
+                            <th>Identificción del cliente</th>
+                            <th>Fecha de la venta</th>
+                            <th>Código del producto</th>
+                            <th>Cantidad</th>
+                            <th>Total de la venta</th>
+                            <th>Descuento aplicado</th>
+                            <th>Vendedor</th>
+                            <th>Editar venta</th>
+                            <th>Eliminar venta</th>
                         </tr>
-                        <tr>
-                            <td>Traer de BD</td>
-                            <td>Traer de BD</td>
-                            <td>Traer de BD</td>
-                            <td>Traer de registro</td>
-                            <td>Sumar</td>
-                        </tr>
+                    
+                        {filterInvoice.map((item, i) => (<tr key={i}>
+                                                <td>{item.invoice}<br/></td>
+                                                <td>{item.nameClient}<br/></td>
+                                                <td>{item.dniCliente}</td>
+                                                <td>{item.dateSale}</td>
+                                                <td>{item.codeProduct}</td>
+                                                <td>{item.amount}</td>
+                                                <td>{item.subtotal}</td>
+                                                <td>{item.discount}</td>
+                                                <td>{item.vendor}</td>
+                                                <td><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
+                                                <td><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
+                                            </tr>       
+                        ))}
                     </tbody>
                 </table>
-            </label>          
-            
-            <p><label for="Total de la Venta">
-                <span>Valor total de la venta:</span>
-                <label for ="Suma de valores de Producto"></label>
-            </label></p>
-
-            <p><label for="Vendedor">
-                <span>Nombre del vendedor:</span>
-                <label for ="Traer de Registro"></label>
-            </label></p>
-
-        <input class="submitButton" type="submit" value="Registrar Venta"/>   
-
-        </form>
-
-    </section>    
- 
-    </main>
+            </main>
+        </Fragment>
     )
 }
 
-export default Cuenta
+export {Cuenta};

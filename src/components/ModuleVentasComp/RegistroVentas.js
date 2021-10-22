@@ -6,10 +6,8 @@ function RegistroVentas () {
 
     const form3 = useRef(null);
 
-    const [MostrarProductoSeleccionado, setMostrarProductoSeleccionado] = useState(true);
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
-    const [productosfiltrados, setproductosfiltrados] = useState(products);
 
     const handleSubmitSales = (event) => {
         event.preventDefault();
@@ -48,27 +46,12 @@ function RegistroVentas () {
         setProducts(saveProducts)
     }
 
-    const form = useRef(null);
-    // const obtenerinfo = async (e) => {
-    //     e.preventDefault ();
-    //     const formData = new FormData(form.current);
-    //     formData.forEach((key, value) =>{
-    //         console.log();
-    //     });
-        
-    // }
+    const handleSearch = e => {
+        e.preventDefault();
+        const handle = e.target.value;
 
-    const [busqueda,setbusqueda] = useState(" ");
-
-    useEffect (() => {
-        console.log("busqueda", busqueda);
-        console.log("Lista Original", products);
-        setproductosfiltrados(
-            products.filter((elemento=>{
-            return elemento.codigo.includes(busqueda); 
-        })
-        ));
-    }, [busqueda, products]);
+        console.log(handle);
+    };
 
     return (
         <Fragment>
@@ -97,7 +80,7 @@ function RegistroVentas () {
 
                     <label>
                         <span>Código del producto:</span>
-                        <select type="search" name="codeProduct" placeholder="Seleccione el código del producto" required>
+                        <select type="search" name="codeProduct" placeholder="Seleccione el código del producto" required onChange={handleSearch}>
                             {products.map(item => (<option key={item._id}>{item.codigo}</option>))}
                         </select>
                     </label>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function ActiveProductsRead () {
 
     const [products, setProducts] = useState([]);
-    const [searchProduct, setSearchProduct] = useState([]);
+    const [searchProducts, setSearchProducts] = useState([]);
 
     useEffect(() => {
         getData()
@@ -19,12 +19,12 @@ function ActiveProductsRead () {
     const handleSearch = e => {
         e.preventDefault();
         const handle = e.target.value.toLowerCase();
-        setSearchProduct(handle);
-        console.log(searchProduct);
+        setSearchProducts(handle);
+        console.log(searchProducts);
     };
 
-    const filterProduct = products.filter( product => {
-        return JSON.stringify(product).toLowerCase().includes(searchProduct)
+    const filterProducts= products.filter( product => {
+        return JSON.stringify(product).toLowerCase().includes(searchProducts)
     })
 
     return (
@@ -32,12 +32,12 @@ function ActiveProductsRead () {
         <main>
 
         <label>
-            <p>Búscar</p>
-                    <input type="text"
-                    codigo="searchProducts"
-                    placeholder="Escribe el código del producto"
-                    onChange={handleSearch}
-                    value={searchProduct}
+            <h2>Búscar</h2>
+                            <input type="text"
+                            codigo="searchProduct"
+                            placeholder="Escribe una palabra clave"
+                            onChange={handleSearch}
+                            value={searchProducts}
                     />
         </label>
             <h2 className="subtitle_page">Productos Activos</h2>
@@ -55,15 +55,15 @@ function ActiveProductsRead () {
                         <th>Inventario</th>
                     </tr>
                 
-                    {filterProduct.map((item, i) => (<tr key={i}>
-                                            <td key={item._id}>{item.codigo}<br/></td>
-                                            <td key={item._id}>{item.nombre}<br/></td>
-                                            <td key={item._id}>{item.descripcion}<br/></td>
-                                            <td key={item._id}>{item.color}</td>
-                                            <td key={item._id}>{item.talla}</td>
-                                            <td key={item._id}>{item.categoria}</td>
-                                            <td key={item._id}>{item.precio}</td>
-                                            <td key={item._id}>{item.inventario}</td>
+                    {filterProducts.map((item, i) => (<tr key={i}>
+                                            <td >{item.codigo}<br/></td>
+                                            <td >{item.nombre}<br/></td>
+                                            <td >{item.descripcion}<br/></td>
+                                            <td >{item.color}</td>
+                                            <td >{item.talla}</td>
+                                            <td >{item.categoria}</td>
+                                            <td >{item.precio}</td>
+                                            <td >{item.inventario}</td>
                                         </tr>       
                     ))}
                 </tbody>
