@@ -1,15 +1,39 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, Fragment} from "react";
+import {ActiveProductsRead} from "../ModuleProductComp/ActiveProductsRead";
 import axios from "axios";
 
 function RegistroVentas () {
+
+    const form3 = useRef(null);
 
     const [MostrarProductoSeleccionado, setMostrarProductoSeleccionado] = useState(true);
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
     const [productosfiltrados, setproductosfiltrados] = useState(products);
 
+    const handleSubmitSales = (event) => {
+        event.preventDefault();
+        const formData = new FormData(form3.current);
+        const dataNewInvoice = {
+            invoice: formData.get("invoice"),
+            nameClient: formData.get("nameClient"),
+            dniCliente: formData.get("dniCliente"),
+            codeProduct: formData.get("codeProduct"),
+            amount: formData.get("amount"),
+            subtotal: formData.get('subtotal'),
+            dateSale: formData.get('dateSale'),
+            discount: formData.get('discount'),
+            vendor: formData.get('vendor')
+        }
+        console.log(dataNewInvoice);
+        axios.post('https://us-east-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/matrixfacturas-ylvur/service/matrixFacturas/incoming_webhook/add', dataNewInvoice)
+            .then(res => console.log(res.data), alert("Factura creada con éxito"));
+        window.location.assign("/Ventas");
+    }
+
     useEffect(() => {
         obtenerDatos()
+        getData()
         }, []);
 
     const obtenerDatos = async () => {
@@ -17,10 +41,6 @@ function RegistroVentas () {
         const saveUsers = await data.json();
         setUsers(saveUsers)
     }
-    
-    useEffect(() => {
-        getData()
-      }, []);
 
     const getData = async () => {
         const data = await fetch('https://webhooks.mongodb-realm.com/api/client/v2.0/app/matrix-pfeao/service/Matrix/incoming_webhook/Matrix');
@@ -29,16 +49,17 @@ function RegistroVentas () {
     }
 
     const form = useRef(null);
-    const obtenerinfo = async (e) => {
-        e.preventDefault ();
-        const formData = new FormData(form.current);
-        formData.forEach((key, value) =>{
-            console.log();
-        });
+    // const obtenerinfo = async (e) => {
+    //     e.preventDefault ();
+    //     const formData = new FormData(form.current);
+    //     formData.forEach((key, value) =>{
+    //         console.log();
+    //     });
         
-    }
+    // }
 
     const [busqueda,setbusqueda] = useState(" ");
+
     useEffect (() => {
         console.log("busqueda", busqueda);
         console.log("Lista Original", products);
@@ -50,90 +71,56 @@ function RegistroVentas () {
     }, [busqueda, products]);
 
     return (
-            
+        <Fragment>
+            <ActiveProductsRead />
+        
         <main>
 
             <section class="contenedorSeccion">
-                <p><span>Productos:</span></p>
-                <form ref={form} onSubmit={obtenerinfo} action="">
-                    
+
+
+                <h2 className="subtitle_page">Registro de Ventas</h2>
+                <form ref={form3} onSubmit={handleSubmitSales}>
                     <label>
-                        <span>Introduzca el código del Producto:</span>
-                        <label>
-                            <input 
-                                type={Number}
-                                name="Busqueda" 
-                                value={busqueda}
-                                onChange={(e)=> setbusqueda(e.target.value)}
-                                placeholder="Introduzca el código del Producto"
-                            />
-                        </label>
+                        <span>Factura No.:</span>
+                        <input type="number" name="invoice" placeholder="Indique el número de factura" required/>
                     </label>
-
-                    <button className="buttonV" type="submit" onClick={()=>setMostrarProductoSeleccionado(true)}>Seleccionar</button>    
-
-                </form>
-            </section>
-
-            {MostrarProductoSeleccionado && (
-            <section class="contenedorSeccion">
-                <p><span>Información de selección:</span></p>
-                <table>
-                    <thead> 
-                        <tr>
-                            <th>Código de Producto</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Color</th>
-                            <th>Talla</th>
-                            <th>Categoria</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                        </tr>
-                    </thead> 
-                    <tbody> 
-                        {productosfiltrados.map(item => (<tr>
-                                                <td key={item._id}>{item.codigo}<br/></td>
-                                                <td key={item._id}>{item.nombre}<br/></td>
-                                                <td key={item._id}>{item.descripcion}<br/></td>
-                                                <td key={item._id}>{item.color}</td>
-                                                <td key={item._id}>{item.talla}</td>
-                                                <td key={item._id}>{item.categoria}</td>
-                                                <td key={item._id}>{item.precio}</td>
-                                                <td key={item._id}>{item.inventario}</td>
-
-                                            </tr>       
-                        ))}
-                    </tbody>
-                </table>
-
-                <p><span>Registro de Venta:</span></p>
-                <form ref={form} onSubmit={obtenerinfo} action="">
-
                     <label>
-                        <span>Indique el nombre del cliente:</span>
-                        <input type="Nombre" id="Nombre" placeholder="Nombre" autocomplete="off"/>
+                        <span>Nombre del cliente:</span>
+                        <input type="text" name="nameClient" placeholder="Escriba el nombre del cliente" required/>
                     </label>
 
                     <label>
-                        <span>Indique el número de documento del cliente:</span>
-                        <input type="Documento" id="Documento" placeholder="Documento" autocomplete="off"/>
+                        <span>DNI de cliente:</span>
+                        <input type="number" name="dniCliente" placeholder="Escriba el número de identificación" required/>
                     </label>
-                
+
                     <label>
-                        <span>Indique la cantidad a vender:</span>
-                        <input type="Cantidad" id="Cantidad" placeholder="Cantidad" autocomplete="off"/>
+                        <span>Código del producto:</span>
+                        <select type="search" name="codeProduct" placeholder="Seleccione el código del producto" required>
+                            {products.map(item => (<option key={item._id}>{item.codigo}</option>))}
+                        </select>
+                    </label>
+
+                    <label>
+                        <span>Cantidad a vender:</span>
+                        <input type="number" name="amount" placeholder="Escriba la cantidad de productos" required/>
+                    </label>
+
+                    <label>
+                        <span>Subtotal:</span>
+                        <input type="number" name="subtotal" required/>
                     </label>
 
                     <label>
                         <span>Fecha de la venta:</span>
-                        <input type="date" id="DD/MM/AAAA" placeholder="DD/MM/AAAA" autocomplete="off"/>
+                        <input type="date" name="dateSale" id="DD/MM/AAAA" placeholder="DD/MM/AAAA" required/>
                     </label>
 
                     <label>
                         <span>Seleccione el valor de descuento:</span>
-                        <label for="SelecciónColor"></label>
-                            <select name="Descuento">
+                        <label></label>
+                            <select name="discount">
                                 <option selected= "true" value="0" disabled="disabled">Seleccione una opción</option> 
                                 <option value="0%">0%</option> 
                                 <option value="5%">5%</option> 
@@ -142,23 +129,22 @@ function RegistroVentas () {
                             </select>
                     </label>
 
-                    <label for="codigo">
-                        <span>Asigne un vendedor:</span>
-                        <label></label>
-                            <select name="Username">
+                    <label>
+                        <span>Vendedor encargado:</span>
+                        <select name="vendor">
                                 <option selected= "true" value="0" disabled="disabled">Seleccione una opción</option> 
                                 {users.map((item, i) => (<option>{item.name} {item.lastname}</option>
                                         ))}
                         </select>
                     </label>
                 
-                    <button className="buttonV" type="submit" placeholder="Añadir Venta" >Añadir Venta</button>    
+                    <input type="submit" value="Añadir venta"/>    
                         
                 </form>
             </section>
-            )}
 
         </main>
+        </Fragment>
 
     )
 };
