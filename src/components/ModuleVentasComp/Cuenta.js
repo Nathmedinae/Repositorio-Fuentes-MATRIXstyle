@@ -64,7 +64,7 @@ const Cuenta = () => {
                                                 <td>{item.dateSale}</td>
                                                 <td>{item.codeProduct}</td>
                                                 <td>{item.amount}</td>
-                                                <td>{item.subtotal}</td>
+                                                <td>{item.total}</td>
                                                 <td>{item.discount}</td>
                                                 <td>{item.vendor}</td>
                                                 <td><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>

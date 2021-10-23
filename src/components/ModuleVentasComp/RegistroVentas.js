@@ -8,6 +8,10 @@ function RegistroVentas () {
 
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
+    const [searchProduct, setSearchProduct] = useState("");
+    const [tempInvoice, settempInvoice] = useState("");
+    const [tempAmount, settempAmount] = useState("");
+    const [tempDiscount, settempDiscount] = useState("");
 
     const handleSubmitSales = (event) => {
         event.preventDefault();
@@ -21,6 +25,7 @@ function RegistroVentas () {
             subtotal: formData.get('subtotal'),
             dateSale: formData.get('dateSale'),
             discount: formData.get('discount'),
+            total: formData.get('total'),
             vendor: formData.get('vendor')
         }
         console.log(dataNewInvoice);
@@ -32,6 +37,7 @@ function RegistroVentas () {
     useEffect(() => {
         obtenerDatos()
         getData()
+        // handleTempSales();
         }, []);
 
     const obtenerDatos = async () => {
@@ -49,9 +55,39 @@ function RegistroVentas () {
     const handleSearch = e => {
         e.preventDefault();
         const handle = e.target.value;
-
-        console.log(handle);
+        setSearchProduct(handle);
     };
+
+    const handleAmount = e => {
+        e.preventDefault();
+        const handle = e.target.value;
+        settempAmount(handle);
+    };
+
+    const handleDiscount = e => {
+        e.preventDefault();
+        const handle = e.target.value;
+        settempDiscount(handle);
+    };
+
+
+    
+    const filterProduct = products.filter( product => {
+        return JSON.stringify(product).includes(searchProduct)
+    })
+
+    const precio = parseInt(filterProduct.map( i => i.precio));
+    const subTotal = precio * tempAmount;
+    const total = (subTotal) - (subTotal * tempDiscount);
+    console.log(precio);
+    console.log(tempAmount);
+    console.log(subTotal);
+
+
+
+
+
+
 
     return (
         <Fragment>
@@ -87,12 +123,12 @@ function RegistroVentas () {
 
                     <label>
                         <span>Cantidad a vender:</span>
-                        <input type="number" name="amount" placeholder="Escriba la cantidad de productos" required/>
+                        <input type="number" name="amount" placeholder="Escriba la cantidad de productos" required onChange={handleAmount}/>
                     </label>
 
                     <label>
                         <span>Subtotal:</span>
-                        <input type="number" name="subtotal" required/>
+                        <input type="number" name="subtotal" required value={subTotal}/>
                     </label>
 
                     <label>
@@ -103,13 +139,18 @@ function RegistroVentas () {
                     <label>
                         <span>Seleccione el valor de descuento:</span>
                         <label></label>
-                            <select name="discount">
+                            <select name="discount" onChange={handleDiscount} key="discount">
                                 <option selected= "true" value="0" disabled="disabled">Seleccione una opción</option> 
-                                <option value="0%">0%</option> 
-                                <option value="5%">5%</option> 
-                                <option value="10%">10%</option> 
-                                <option value="15%">15%</option>
+                                <option value="0">0%</option> 
+                                <option value="0.05">5%</option> 
+                                <option value="0.1">10%</option> 
+                                <option value="0.15">15%</option>
                             </select>
+                    </label>
+
+                    <label>
+                        <span>Total:</span>
+                        <input type="number" name="total" required value={total}/>
                     </label>
 
                     <label>
