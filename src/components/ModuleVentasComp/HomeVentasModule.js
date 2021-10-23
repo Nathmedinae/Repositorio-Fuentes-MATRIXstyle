@@ -19,8 +19,6 @@ function HomeVentasModule () {
                         <li><button className="buttonMenu" onClick={menuP}> Inicio </button></li>
                         <li><NavLink exact to="/Ventas">► Nueva Venta</NavLink></li>
                         <li><NavLink exact to="/Ventas/Cuenta">► Ventas registradas</NavLink></li>
-                        <li><NavLink exact to="/Ventas/ConsultarVentas">► Consultar Ventas</NavLink></li>
-                        <li><NavLink exact to="/Ventas/EditarVentas">► Editar Ventas</NavLink></li>
                         <li><button className="buttonMenu" onClick={home}> Salida </button></li>
                     </ul>
                 </nav>
