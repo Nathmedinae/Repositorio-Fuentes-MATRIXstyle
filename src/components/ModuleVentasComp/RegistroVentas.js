@@ -9,7 +9,6 @@ function RegistroVentas () {
     const [users, setUsers] = useState([]);
     const [products, setProducts] = useState([]);
     const [searchProduct, setSearchProduct] = useState("");
-    const [tempInvoice, settempInvoice] = useState("");
     const [tempAmount, settempAmount] = useState("");
     const [tempDiscount, settempDiscount] = useState("");
 
@@ -95,7 +94,7 @@ function RegistroVentas () {
         
         <main>
 
-            <section class="contenedorSeccion">
+            <section className="contenedorSeccion">
 
 
                 <h2 className="subtitle_page">Registro de Ventas</h2>

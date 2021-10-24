@@ -67,8 +67,8 @@ const Cuenta = () => {
                                                 <td>{item.total}</td>
                                                 <td>{item.discount}</td>
                                                 <td>{item.vendor}</td>
-                                                <td><Link to={"/Usuarios/EditarUsuarios/" + item._id}>Editar</Link></td>
-                                                <td><Link to={"/Usuarios/BorrarUsuarios/" + item._id}>Eliminar</Link></td>
+                                                {/* <td><Link to={"/Usuarios/EditarVentas/" + item._id}>Editar</Link></td>
+                                                <td><Link to={"/Usuarios/BorrarVentas/" + item._id}>Eliminar</Link></td> */}
                                             </tr>       
                         ))}
                     </tbody>
