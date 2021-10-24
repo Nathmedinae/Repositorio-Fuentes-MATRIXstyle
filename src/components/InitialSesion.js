@@ -27,11 +27,7 @@ function InitialSesion () {
                     cookiePolicy={'single_host_origin'}
                     isSignedIn={true}
                     uxMode="redirect"
-<<<<<<< HEAD
                     redirectUri="https://matrix-style.herokuapp.com/MenuPrincipal"
-=======
-                    redirectUri="https://matrix-style.herokuapp.com/"
->>>>>>> 98eedc8c96d86cecfa24499a05227191df4423f5
                     className="g-signin"
                 />
             </main>
